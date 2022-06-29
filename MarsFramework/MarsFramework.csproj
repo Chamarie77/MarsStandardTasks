@@ -137,6 +137,7 @@
     <EmbeddedResource Include="Config\MarsResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MarsResource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

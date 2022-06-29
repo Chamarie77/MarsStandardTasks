@@ -9,12 +9,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
 using static MarsFramework.Global.GlobalDefinitions;
-
+using MarsFramework.Config;
 
 namespace MarsFramework.Pages
 {
     class SignIn 
     {
+        public static string ApplicationUrl = MarsResource.ApplicationUrl;
         public SignIn()
         {
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
@@ -48,8 +49,7 @@ namespace MarsFramework.Pages
         {
 
             Thread.Sleep(3000);
-
-            GlobalDefinitions.Driver.Navigate().GoToUrl("http://localhost:5000/");
+            GlobalDefinitions.Driver.Navigate().GoToUrl(ApplicationUrl);
 
             // Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
@@ -62,14 +62,11 @@ namespace MarsFramework.Pages
 
             //Enter Password
             Password.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
-            Thread.Sleep(3000);
+
             //Click on LoginButton
+            Thread.Sleep(2000);
             LoginBtn.Click();
 
-            //Validate the logged in
-            //IWebDriver driver = GlobalDefinitions.Driver;
-            //IWebElement loggedin = driver.FindElement(By.XPath("//a/button[contains(text(), 'Sign Out')]"));
-            //Assert.AreEqual(loggedin.Text, "Sign Out");
         }
     }
 }

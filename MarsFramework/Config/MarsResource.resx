@@ -117,20 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicationUrl" xml:space="preserve">
+    <value>http://localhost:5000/</value>
+  </data>
   <data name="Browser" xml:space="preserve">
     <value>2</value>
     <comment>1 for firefox and 2 for Chrome</comment>
   </data>
   <data name="ExcelPath" xml:space="preserve">
-    <value>MarsFramework\ExcelData\TestData.xlsx</value>
+    <value>\MarsFramework\ExcelData\TestData.xlsx</value>
     <comment>Share Skill Data</comment>
   </data>
   <data name="ExcelPathDelete" xml:space="preserve">
-    <value>MarsFramework\ExcelData\DeleteTestData.xlsx</value>
+    <value>\MarsFramework\ExcelData\DeleteTestData.xlsx</value>
     <comment>Delete Test Data</comment>
   </data>
   <data name="ExcelPathEdit" xml:space="preserve">
-    <value>MarsFramework\ExcelData\EditTestData.xlsx</value>
+    <value>\MarsFramework\ExcelData\EditTestData.xlsx</value>
     <comment>Edit Test Data</comment>
   </data>
   <data name="IsLogin" xml:space="preserve">
@@ -138,12 +141,12 @@
     <comment>If true Login, else Register</comment>
   </data>
   <data name="ReportPath" xml:space="preserve">
-    <value>MarsFramework\TestReports\MarsReports.html</value>
+    <value>\MarsFramework\TestReports\MarsReports.html</value>
   </data>
   <data name="ReportXMLPath" xml:space="preserve">
-    <value>MarsFramework\TestReports\ExtentReports 2.0_files</value>
+    <value>\MarsFramework\TestReports\ExtentReports 2.0_files</value>
   </data>
   <data name="ScreenShotPath" xml:space="preserve">
-    <value>MarsFramework\TestReports\Screenshots</value>
+    <value>\MarsFramework\TestReports\Screenshots</value>
   </data>
 </root>

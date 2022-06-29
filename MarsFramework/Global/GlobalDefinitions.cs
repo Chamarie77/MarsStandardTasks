@@ -56,7 +56,10 @@ namespace MarsFramework.Global
             private static DataTable ExcelToDataTable(string fileName, string SheetName)
             {
                 // Open file and return as Stream
-                using (System.IO.FileStream stream = File.Open(fileName, FileMode.Open, FileAccess.Read))
+                var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+                var filePath = projectPath.ToString() + fileName;
+
+                using (System.IO.FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read))
                 {
                     using (IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream))
                     {

@@ -36,8 +36,7 @@ namespace MarsFramework.Pages
         //Select Sub Category Option
         [FindsBy(How = How.Name, Using = "subcategoryId")]
         private IWebElement SubCategoryOption { get; set; }
-
-        
+  
         //Enter Tag names in textbox
         [FindsBy(How = How.XPath, Using = "(//input[@placeholder = 'Add new tag'])[1]")]
         private IWebElement Tags { get; set; }
@@ -61,10 +60,6 @@ namespace MarsFramework.Pages
         //Storing the table of available days
         [FindsBy(How = How.XPath, Using = "//input[@name = 'Available'][@index ='1']")]
         private IWebElement Days { get; set; }
-
-        //Storing the starttime
-       // [FindsBy(How = How.XPath, Using = "//div[3]/div[2]/input[1]")]
-       // private IWebElement StartTime { get; set; }
 
         //Click on StartTime 
         [FindsBy(How = How.XPath, Using = "//input[@name = 'StartTime'][@index ='1']")]
@@ -90,7 +85,21 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         private IWebElement Save { get; set; }
 
-        
+        //Click on Manage Listings Link
+        [FindsBy(How = How.LinkText, Using = "Manage Listings")]
+        private IWebElement ManageListings { get; set; }
+
+        //Edit the listing
+        [FindsBy(How = How.XPath, Using = "//i[@class = 'outline write icon']")]
+        private IWebElement Edit { get; set; }
+
+        //Delete the listing
+        [FindsBy(How = How.XPath, Using = "//i[@class = 'remove icon']")]
+        private IWebElement Delete { get; set; }
+
+        //Click on Yes or No
+        [FindsBy(How = How.XPath, Using = "//button[@class = 'ui icon positive right labeled button']")]
+        private IWebElement ActionsButton { get; set; }
 
         internal void EnterShareSkill()
         {
@@ -157,65 +166,37 @@ namespace MarsFramework.Pages
             //Click on Save Button   
             Save.Click();
            
-
         }
-
-
-        //Click on Manage Listings Link
-        [FindsBy(How = How.LinkText, Using = "Manage Listings")]
-        private IWebElement ManageListings { get; set; }
-
-        //Edit the listing
-        [FindsBy(How = How.XPath, Using = "//i[@class = 'outline write icon']")]
-        private IWebElement Edit { get; set; }
-
-        //Delete the listing
-        [FindsBy(How = How.XPath, Using = "//i[@class = 'remove icon']")]
-        private IWebElement Delete { get; set; }
-
-        
-        //Click on Yes or No
-        [FindsBy(How = How.XPath, Using = "//button[@class = 'ui icon positive right labeled button']")]
-        private IWebElement ActionsButton { get; set; }
 
         internal void EditShareSkill()
         {
            
-            //populate excel dat
+            //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
-
-           
-            Thread.Sleep(1000);
-
-            //Go to Service listing page
-           // GlobalDefinitions.Driver.Navigate().GoToUrl("http://localhost:5000/Home/ServiceListing");
-
-
+ 
             //Click on Manage Listing Link
+            Thread.Sleep(1000);
             ManageListings.Click();
 
             //Click on Edit Icon
             Thread.Sleep(2000);
             Edit.Click();
 
-            //Edit on Share Skill's Title 
-            Thread.Sleep(3000);
+            //Change Share Skill's Title 
+            Thread.Sleep(2000);
             Title.Clear();
-            Thread.Sleep(3000);
+
+            Thread.Sleep(2000);
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
             Save.Click();
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
            
         }
 
         internal void DeleteShareSkill()
         {
-            //Populate the excel data
-            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathDelete, "DeleteTestData");
-            Thread.Sleep(1000);
-
-            
+      
             Thread.Sleep(2000);
             //Click on Manage Listing Link
             ManageListings.Click();
@@ -227,9 +208,6 @@ namespace MarsFramework.Pages
             Thread.Sleep(1000);
             //Click action button
             ActionsButton.Click();
-
-
-
 
         }
     }

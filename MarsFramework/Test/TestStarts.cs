@@ -19,8 +19,9 @@ namespace MarsFramework
         {
 
             [Test]
-            public void Test_ShareSkills()
+            public void Test_AddShareSkills()
             {
+                var x = System.Environment.CurrentDirectory;
                 ShareSkill page = new ShareSkill();
                 page.EnterShareSkill();
             }
@@ -28,7 +29,7 @@ namespace MarsFramework
 
 
             [Test]
-            public void Test_EditSkills()
+            public void Test_ChangeSkills()
             {
                 ShareSkill page = new ShareSkill();
                 page.EditShareSkill();

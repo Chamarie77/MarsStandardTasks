@@ -51,10 +51,7 @@ namespace MarsFramework.Pages
             //Click action button
             ActionsButton.Click();
 
-
-
         }
-
 
     }
 }

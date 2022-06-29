@@ -1,4 +1,5 @@
-﻿using MarsFramework.Global;
+﻿using MarsFramework.Config;
+using MarsFramework.Global;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
@@ -6,6 +7,7 @@ namespace MarsFramework.Pages
 {
     class SignUp
     {
+        public static string ApplicationUrl = MarsResource.ApplicationUrl;
         public SignUp()
         {
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
@@ -47,7 +49,7 @@ namespace MarsFramework.Pages
 
         internal void Register()
         {
-            GlobalDefinitions.Driver.Navigate().GoToUrl("http://localhost:5000/");
+            GlobalDefinitions.Driver.Navigate().GoToUrl(ApplicationUrl);
             //Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignUp");
             //Click on Join button
