@@ -70,7 +70,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Personal\Chamarie\IndustryConnect\onboardingSolution2\marsframework\MarsFramework\ExcelData\TestData.xlsx.
+        ///   Looks up a localized string similar to MarsFramework\ExcelData\TestData.xlsx.
         /// </summary>
         internal static string ExcelPath {
             get {
@@ -79,7 +79,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Personal\Chamarie\IndustryConnect\onboardingSolution2\marsframework\MarsFramework\ExcelData\DeleteTestData.xlsx.
+        ///   Looks up a localized string similar to MarsFramework\ExcelData\DeleteTestData.xlsx.
         /// </summary>
         internal static string ExcelPathDelete {
             get {
@@ -88,7 +88,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Personal\Chamarie\IndustryConnect\onboardingSolution2\marsframework\MarsFramework\ExcelData\EditTestData.xlsx.
+        ///   Looks up a localized string similar to MarsFramework\ExcelData\EditTestData.xlsx.
         /// </summary>
         internal static string ExcelPathEdit {
             get {
@@ -106,7 +106,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Personal\Chamarie\IndustryConnect\onboardingSolution2\marsframework\MarsFramework\TestReports\MarsReports.html.
+        ///   Looks up a localized string similar to MarsFramework\TestReports\MarsReports.html.
         /// </summary>
         internal static string ReportPath {
             get {
@@ -115,7 +115,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Personal\Chamarie\IndustryConnect\onboardingSolution2\marsframework\MarsFramework\Config\XMLFile.xml.
+        ///   Looks up a localized string similar to MarsFramework\TestReports\ExtentReports 2.0_files.
         /// </summary>
         internal static string ReportXMLPath {
             get {
@@ -124,7 +124,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C:\Personal\Chamarie\IndustryConnect\onboardingSolution2\marsframework\MarsFramework\TestReports\Screenshots.
+        ///   Looks up a localized string similar to MarsFramework\TestReports\Screenshots.
         /// </summary>
         internal static string ScreenShotPath {
             get {

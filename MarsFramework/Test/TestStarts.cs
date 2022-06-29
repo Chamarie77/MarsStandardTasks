@@ -23,7 +23,6 @@ namespace MarsFramework
             {
                 ShareSkill page = new ShareSkill();
                 page.EnterShareSkill();
-                //page.EditShareSkill();
             }
 
 

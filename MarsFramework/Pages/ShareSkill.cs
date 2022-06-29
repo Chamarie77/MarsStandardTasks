@@ -188,7 +188,7 @@ namespace MarsFramework.Pages
             Thread.Sleep(1000);
 
             //Go to Service listing page
-            GlobalDefinitions.Driver.Navigate().GoToUrl("http://localhost:5000/Home/ServiceListing");
+           // GlobalDefinitions.Driver.Navigate().GoToUrl("http://localhost:5000/Home/ServiceListing");
 
 
             //Click on Manage Listing Link
