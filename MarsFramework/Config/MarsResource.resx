@@ -147,6 +147,6 @@
     <value>\MarsFramework\TestReports\ExtentReports 2.0_files</value>
   </data>
   <data name="ScreenShotPath" xml:space="preserve">
-    <value>\MarsFramework\TestReports\Screenshots</value>
+    <value>\MarsFramework\TestReports\ScreenShots</value>
   </data>
 </root>

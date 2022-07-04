@@ -66,7 +66,6 @@ namespace MarsFramework.Pages
             //Click on LoginButton
             Thread.Sleep(2000);
             LoginBtn.Click();
-
         }
     }
 }

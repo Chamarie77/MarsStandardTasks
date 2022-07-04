@@ -133,7 +133,7 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \MarsFramework\TestReports\Screenshots.
+        ///   Looks up a localized string similar to \MarsFramework\TestReports\ScreenShots.
         /// </summary>
         internal static string ScreenShotPath {
             get {

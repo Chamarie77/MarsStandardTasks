@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MarsFramework.Global;
 using System;
 using System.Globalization;
+using static NUnit.Core.NUnitFramework;
 
 namespace MarsFramework.Pages
 {
@@ -165,6 +166,11 @@ namespace MarsFramework.Pages
 
             //Click on Save Button   
             Save.Click();
+
+            //Thread.Sleep(2000);
+            // String ExpectedText = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
+
+            // Assert.AreEqual(ExpectedText.Equals("SpecFlow"), "Actual TITLE DO NOT MATCH");
            
         }
 
@@ -189,8 +195,8 @@ namespace MarsFramework.Pages
             Thread.Sleep(2000);
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
-            Save.Click();
             Thread.Sleep(2000);
+            Save.Click();
            
         }
 

@@ -100,7 +100,7 @@ namespace MarsFramework.Global
 
                 catch (Exception e)
                 {
-                    //Added by Kumar
+                    //Added
                     Console.WriteLine("Exception occurred in ExcelLib Class ReadData Method!" + Environment.NewLine + e.Message.ToString());
                     return null;
                 }
@@ -140,15 +140,18 @@ namespace MarsFramework.Global
         {
             public static string SaveScreenshot(IWebDriver driver, string ScreenShotFileName) // Definition
             {
-                var folderLocation = (Base.ScreenshotPath);
+                var folderLocation = (Base.ScreenShotPath);
 
-                if (!System.IO.Directory.Exists(folderLocation))
+                var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+                var filePath = projectPath.ToString() + folderLocation;
+
+                if (!System.IO.Directory.Exists(filePath))
                 {
-                    System.IO.Directory.CreateDirectory(folderLocation);
+                    System.IO.Directory.CreateDirectory(filePath);
                 }
 
                 var screenShot = ((ITakesScreenshot)driver).GetScreenshot();
-                var fileName = new StringBuilder(folderLocation);
+                var fileName = new StringBuilder(filePath);
 
                 fileName.Append(ScreenShotFileName);
                 fileName.Append(DateTime.Now.ToString("_dd-mm-yyyy_mss"));

@@ -4,6 +4,8 @@ using MarsFramework.Global;
 using static MarsFramework.Global.GlobalDefinitions;
 using MarsFramework.Pages;
 using OpenQA.Selenium;
+using static MarsFramework.Pages.ShareSkill;
+using System.Threading;
 using System;
 
 
@@ -25,8 +27,6 @@ namespace MarsFramework
                 ShareSkill page = new ShareSkill();
                 page.EnterShareSkill();
             }
-
-
 
             [Test]
             public void Test_ChangeSkills()
