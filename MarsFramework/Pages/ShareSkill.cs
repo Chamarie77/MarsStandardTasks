@@ -108,6 +108,7 @@ namespace MarsFramework.Pages
             //Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "TestDataShareSkill");
 
+            
             Thread.Sleep(2000);
             //Click on Share Skill Link
             ShareSkillLink.Click();
@@ -164,14 +165,11 @@ namespace MarsFramework.Pages
             ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             ActiveOption.Click();
 
+            Thread.Sleep(1000);
             //Click on Save Button   
             Save.Click();
+                     
 
-            //Thread.Sleep(2000);
-            // String ExpectedText = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
-
-            // Assert.AreEqual(ExpectedText.Equals("SpecFlow"), "Actual TITLE DO NOT MATCH");
-           
         }
 
         internal void EditShareSkill()
@@ -179,36 +177,37 @@ namespace MarsFramework.Pages
            
             //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
- 
+
             //Click on Manage Listing Link
+            
             Thread.Sleep(1000);
             ManageListings.Click();
 
             //Click on Edit Icon
-            Thread.Sleep(2000);
+            Thread.Sleep (1000);
             Edit.Click();
 
             //Change Share Skill's Title 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Title.Clear();
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Save.Click();
            
         }
 
         internal void DeleteShareSkill()
         {
-      
-            Thread.Sleep(2000);
+
+            Thread.Sleep(1000);
             //Click on Manage Listing Link
             ManageListings.Click();
 
             //Click on Delete icon
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             Delete.Click();
 
             Thread.Sleep(1000);

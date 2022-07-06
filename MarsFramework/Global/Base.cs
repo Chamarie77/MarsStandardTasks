@@ -3,8 +3,11 @@ using MarsFramework.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using RelevantCodes.ExtentReports;
+//using RelevantCodes.ExtentReports;
 using System;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports.Reporter.Configuration;
 
 using static MarsFramework.Global.GlobalDefinitions;
 using System.Threading;
@@ -35,10 +38,9 @@ namespace MarsFramework.Global
         public void Inititalize()
         {
             Thread.Sleep(1000);
+           //GlobalDefinitions.WaitForElement(IWebdriver driver, by, 10);
             switch (Browser)
             {
-
-                
                 case 1:
                     GlobalDefinitions.Driver = new FirefoxDriver();
                     break;
@@ -47,16 +49,20 @@ namespace MarsFramework.Global
                     //GlobalDefinitions.Driver = new ChromeDriver();
                     GlobalDefinitions.Driver.Manage().Window.Maximize();
                     break;
-
             }
 
             #region Initialise Reports
 
-            extent = new ExtentReports(ReportPath, false, DisplayOrder.NewestFirst);
-            extent.LoadConfig(MarsResource.ReportXMLPath);
-            test = extent.StartTest("Mars Reports");
+            //extent = new ExtentReports(ReportPath, false, DisplayOrder.NewestFirst);
+            extent = new ExtentReports();
+
+            //extent.Status.Equals(MarsResource.ReportPath);
+           // extent.LoadConfig(MarsResource.ReportXMLPath);
+            test = extent.CreateTest("Mars Reports");
 
             #endregion
+
+
 
             if (MarsResource.IsLogin == "true")
             {
@@ -73,22 +79,41 @@ namespace MarsFramework.Global
 
         }
 
+        
+
+        public void CloseReports()
+        {
+            extent.Flush();
+        }
+
+
 
         [TearDown]
         public void TearDown()
         {
+
             // Screenshot
-            Thread .Sleep(2000);
-            String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.Driver, "ScreenShots");//AddScreenCapture(MarsFrameWork\TestReports\ScreenShots\");
-            test.Log(LogStatus.Info, "Image example: " + img);
+            Thread.Sleep(2000);
+     
+            String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.Driver, "ScreenShots");//AddScreenCapture("\MarsFrameWork\TestReports\ScreenShots\");
+            test.Log(Status.Info, "Image example: " + img);
             // end test. (TestReports)
-            extent.EndTest(test);
+            //extent.EndTest(test);
+           // extent.Flush();
+
+            StartReportsClass.StartExtent();
+            StartReportsClass.ExtentClose();
+
             // calling Flush writes everything to the log file (TestReports)
             extent.Flush();
             // Close the driver :)            
             GlobalDefinitions.Driver.Close();
             GlobalDefinitions.Driver.Quit();
+
+
+            
         }
+
         #endregion
 
     }

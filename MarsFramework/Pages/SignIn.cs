@@ -21,7 +21,7 @@ namespace MarsFramework.Pages
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
         }
 
-        //WaitForElement(10);
+       
         
 
         #region  Initialize Web Elements 
@@ -37,8 +37,7 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.Name, Using = "password")]
         private IWebElement Password { get; set; }
 
-      //  Thread.Sleep(1000);
-
+      
         //Finding the Login Button
         [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Login')]")]
         private IWebElement LoginBtn { get; set; }
@@ -48,7 +47,7 @@ namespace MarsFramework.Pages
         public  void LoginSteps()
         {
 
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
             GlobalDefinitions.Driver.Navigate().GoToUrl(ApplicationUrl);
 
             // Populate the excel data

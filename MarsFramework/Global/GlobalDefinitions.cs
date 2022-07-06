@@ -8,14 +8,16 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
+//using RelevantCodes.ExtentReports;
+using NUnit.Framework;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+
 
 namespace MarsFramework.Global
 {
     class GlobalDefinitions
     {
-        
-        //Navigate the Url
-        
         //Initialise the browser
         public static IWebDriver Driver { get; set; }
 
@@ -140,10 +142,10 @@ namespace MarsFramework.Global
         {
             public static string SaveScreenshot(IWebDriver driver, string ScreenShotFileName) // Definition
             {
-                var folderLocation = (Base.ScreenShotPath);
+                var folderLocation = Base.ScreenShotPath;
 
-                var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
-                var filePath = projectPath.ToString() + folderLocation;
+               var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+               var filePath = projectPath.ToString() + folderLocation;
 
                 if (!System.IO.Directory.Exists(filePath))
                 {
@@ -162,5 +164,35 @@ namespace MarsFramework.Global
             }
         }
         #endregion
+
+        #region extentreports
+
+        public class StartReportsClass
+        {
+            public static ExtentReports extent;
+
+            public static ExtentReports StartExtent()
+            {
+
+                if (extent == null)
+                {
+                    extent = new ExtentReports();
+                    String reportDir = Path.Combine(Base.ReportPath, "Mars Report");
+                    //String path = Path.Combine(reportDir, "Mars.html");
+                    var reporter = new ExtentHtmlReporter(reportDir);
+                    extent.AttachReporter(reporter);
+                    
+                }
+                return extent;
+            }
+
+            public static void ExtentClose()
+            {
+                extent.Flush();
+            }
+            
+        }
+        #endregion
+
     }
 }
