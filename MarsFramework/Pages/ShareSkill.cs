@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using MarsFramework.Global;
 using System;
 using System.Globalization;
-using static NUnit.Core.NUnitFramework;
-
+//using static NUnit.Core.NUnitFramework;
+using NUnit.Framework;
 namespace MarsFramework.Pages
 {
     internal class ShareSkill
@@ -102,26 +102,30 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//button[@class = 'ui icon positive right labeled button']")]
         private IWebElement ActionsButton { get; set; }
 
-        internal void EnterShareSkill()
+        internal void AddShareSkill()
         {
            
             //Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "TestDataShareSkill");
-
-            
-            Thread.Sleep(2000);
+            //  GlobalDefinitions.WaitForElement(driver, By.LinkText("Share Skill") , 10);
+            Thread.Sleep(3000);
+           // GlobalDefinitions.wait(30);
             //Click on Share Skill Link
             ShareSkillLink.Click();
-
+            Thread.Sleep(3000);
             //Enter the Title
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
 
             //Enter the Description
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
+           // GlobalDefinitions.WaitForElement(driver, By.Name("Category"), 10);
+            Thread.Sleep(3000);
             //Select  Category Dropdown Option
             new SelectElement(CategoryDropDown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
 
+            //GlobalDefinitions.WaitForElement(driver, By.Name("SubCategory"), 10); ;
+            Thread.Sleep(3000);
             // Select  Sub Category Option
             new SelectElement(SubCategoryOption).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
 
@@ -165,7 +169,9 @@ namespace MarsFramework.Pages
             ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             ActiveOption.Click();
 
-            Thread.Sleep(1000);
+            //GlobalDefinitions.WaitForElement(driver, By.XPath("//input[@value='Save']"), 10);
+            Thread.Sleep(3000);
+            //GlobalDefinitions.wait(30);
             //Click on Save Button   
             Save.Click();
                      
@@ -174,43 +180,61 @@ namespace MarsFramework.Pages
 
         internal void EditShareSkill()
         {
-           
+           // GlobalDefinitions.wait(30);
+            Thread.Sleep(1000);
             //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
 
             //Click on Manage Listing Link
-            
-            Thread.Sleep(1000);
+
+           // GlobalDefinitions.WaitForElement(driver, By.LinkText("Manage Listings"), 10);
+            Thread.Sleep(3000);
             ManageListings.Click();
 
             //Click on Edit Icon
-            Thread.Sleep (1000);
+           // GlobalDefinitions.wait(30);
+            Thread.Sleep (2000);
             Edit.Click();
 
             //Change Share Skill's Title 
-            Thread.Sleep(1000);
+             //GlobalDefinitions.wait(30);
+            Thread.Sleep(2000);
             Title.Clear();
 
-            Thread.Sleep(1000);
+            //GlobalDefinitions.wait(30);
+            Thread.Sleep(2000);
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
-            Thread.Sleep(1000);
+            //GlobalDefinitions.wait(30);
+            Thread.Sleep(2000);
             Save.Click();
-           
+
+            //public void c_editManageShareskill()
+            //{
+            //    ManageListings managelistings = new ManageListings();
+            //    //managelistings.editListings();
+            //    string expectedtitle = managelistings.editListings();
+            //    string firstskilltitle = managelistings.getfirsttitle();
+            //    Assert.That(firstskilltitle == expectedtitle, "title doest not match");
+            //}
+
         }
 
         internal void DeleteShareSkill()
         {
 
-            Thread.Sleep(1000);
+            //GlobalDefinitions.wait(20);
+            Thread.Sleep(2000);
             //Click on Manage Listing Link
             ManageListings.Click();
 
             //Click on Delete icon
-            Thread.Sleep(1000);
+            //GlobalDefinitions.wait(30);
+            Thread.Sleep(2000);
             Delete.Click();
 
-            Thread.Sleep(1000);
+            //GlobalDefinitions.wait(30);
+            Thread.Sleep(2000);
             //Click action button
             ActionsButton.Click();
 

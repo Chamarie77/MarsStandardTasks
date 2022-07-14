@@ -1,14 +1,12 @@
 ﻿using MarsFramework.Config;
 using MarsFramework.Pages;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-//using RelevantCodes.ExtentReports;
+using OpenQA.Selenium.Support.UI;
+using RelevantCodes.ExtentReports;
 using System;
-using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
-using AventStack.ExtentReports.Reporter.Configuration;
-
 using static MarsFramework.Global.GlobalDefinitions;
 using System.Threading;
 
@@ -29,16 +27,19 @@ namespace MarsFramework.Global
         #endregion
 
         #region reports
-        public static ExtentTest test;
         public static ExtentReports extent;
+        public static ExtentTest test;
+        int count = 1;
+
         #endregion
 
         #region setup and tear down
         [SetUp]
         public void Inititalize()
         {
-            Thread.Sleep(1000);
-           //GlobalDefinitions.WaitForElement(IWebdriver driver, by, 10);
+           // Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+             Thread.Sleep(3000);
+            // GlobalDefinitions.wait(30);
             switch (Browser)
             {
                 case 1:
@@ -53,20 +54,37 @@ namespace MarsFramework.Global
 
             #region Initialise Reports
 
-            //extent = new ExtentReports(ReportPath, false, DisplayOrder.NewestFirst);
-            extent = new ExtentReports();
+            string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
 
-            //extent.Status.Equals(MarsResource.ReportPath);
-           // extent.LoadConfig(MarsResource.ReportXMLPath);
-            test = extent.CreateTest("Mars Reports");
+            string actualPath = path.Substring(0, path.LastIndexOf("bin"));
+
+            string projectPath = new Uri(actualPath).LocalPath;
+
+            //Append the html report file to current project path
+            string reportPath = projectPath + ReportPath;
+
+
+
+            //Boolean value for replacing exisisting report
+
+            extent = new ExtentReports(reportPath, false);
+
+            //extent = new ExtentReports(ReportPath, false, DisplayOrder.NewestFirst);
+            //  extent.LoadConfig(MarsResource.ReportXMLPath);
+            extent.LoadConfig(projectPath + ReportXMLpath);
+           
+             //  test = extent.StartTest("Mars Reports");
 
             #endregion
 
 
 
-            if (MarsResource.IsLogin == "true")
+            if (MarsResource.IsLogin.ToLower() == "true")
             {
-                Thread.Sleep(1000);
+                //GlobalDefinitions.WaitForElement(driver, By.XPath("//a[contains(text(),'Sign In')]"), 10);
+              //  Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+               // GlobalDefinitions.wait(10);
+                Thread.Sleep(3000);
                 SignIn loginobj = new SignIn();
                 loginobj.LoginSteps();
             }
@@ -75,37 +93,34 @@ namespace MarsFramework.Global
                 SignUp obj = new SignUp();
                 obj.Register();
                 Thread.Sleep(2000);
+               //GlobalDefinitions.wait(30);
             }
-
         }
-
-        
+              
 
         public void CloseReports()
         {
+            extent.EndTest(test);
             extent.Flush();
         }
-
-
 
         [TearDown]
         public void TearDown()
         {
-
             // Screenshot
             Thread.Sleep(2000);
-     
-            String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.Driver, "ScreenShots");//AddScreenCapture("\MarsFrameWork\TestReports\ScreenShots\");
-            test.Log(Status.Info, "Image example: " + img);
+            //GlobalDefinitions.wait(30);
+            String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.Driver, "Report");
+            //Status logstatus = Status.Pass;
+            test.Log(LogStatus.Info, "Image example: " + img);
             // end test. (TestReports)
-            //extent.EndTest(test);
-           // extent.Flush();
-
-            StartReportsClass.StartExtent();
-            StartReportsClass.ExtentClose();
-
+            count++;
+            extent.EndTest(test);
+           
+            
             // calling Flush writes everything to the log file (TestReports)
             extent.Flush();
+            
             // Close the driver :)            
             GlobalDefinitions.Driver.Close();
             GlobalDefinitions.Driver.Quit();

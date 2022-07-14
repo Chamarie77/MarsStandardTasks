@@ -23,23 +23,43 @@ namespace MarsFramework
             [Test]
             public void Test_AddShareSkills()
             {
-                //var x = System.Environment.CurrentDirectory;
+               // Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+                //Log 'info'
+                test = extent.StartTest("Test_AddShareSkills");
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddShareSkill demo");
                 ShareSkill page = new ShareSkill();
-                page.EnterShareSkill();
+                page.AddShareSkill();
+                //  Assert.IsTrue(true);
+                // test.Pass("Assertion passed");
+                //Assert.AreEqual(10, 10);
+
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test AddShareSkill Passed");
+
             }
 
             [Test]
             public void Test_ChangeSkills()
             {
+                test = extent.StartTest("Test_ChangeSkills");
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_ChangeSkills demo");
                 ShareSkill page = new ShareSkill();
                 page.EditShareSkill();
+                //  Assert.IsTrue(true);
+                //test.Pass("Assertion passed");
+
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Fail, "Test Failed ChangeSkills Passed");
             }
 
             [Test]
             public void Test_DeleteSkills()
             {
+                test = extent.StartTest("Test_DeleteSkills");
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_DeleteSkills demo");
                 ShareSkill page = new ShareSkill();
                 page.DeleteShareSkill();
+                //  Assert.IsTrue(true);
+                //  test.Pass("Assertion passed");
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test DeleteSkills Passed");
             }
 
         }

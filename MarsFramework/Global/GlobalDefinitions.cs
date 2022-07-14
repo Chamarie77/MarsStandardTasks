@@ -8,10 +8,8 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
-//using RelevantCodes.ExtentReports;
+using RelevantCodes.ExtentReports;
 using NUnit.Framework;
-using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
 
 
 namespace MarsFramework.Global
@@ -28,9 +26,9 @@ namespace MarsFramework.Global
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
 
         }
-        public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
+        public static IWebElement WaitForElement(IWebDriver Driver, By by, int timeOutinSeconds)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
+            WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutinSeconds));
             return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
         }
         #endregion
@@ -75,8 +73,6 @@ namespace MarsFramework.Global
                         // store it in data table
                         DataTable resultTable = table[SheetName];
 
-                        //excelReader.Dispose();
-                        //excelReader.Close();
                         // return
                         return resultTable;
                     }
@@ -144,8 +140,16 @@ namespace MarsFramework.Global
             {
                 var folderLocation = Base.ScreenShotPath;
 
-               var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
-               var filePath = projectPath.ToString() + folderLocation;
+                //var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
+
+                string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+
+                string actualPath = path.Substring(0, path.LastIndexOf("bin"));
+
+                string projectPath = new Uri(actualPath).LocalPath;
+
+                //String screenShotPath = projectPath + folderLocation;
+                var filePath = projectPath + folderLocation;
 
                 if (!System.IO.Directory.Exists(filePath))
                 {
@@ -165,34 +169,6 @@ namespace MarsFramework.Global
         }
         #endregion
 
-        #region extentreports
-
-        public class StartReportsClass
-        {
-            public static ExtentReports extent;
-
-            public static ExtentReports StartExtent()
-            {
-
-                if (extent == null)
-                {
-                    extent = new ExtentReports();
-                    String reportDir = Path.Combine(Base.ReportPath, "Mars Report");
-                    //String path = Path.Combine(reportDir, "Mars.html");
-                    var reporter = new ExtentHtmlReporter(reportDir);
-                    extent.AttachReporter(reporter);
-                    
-                }
-                return extent;
-            }
-
-            public static void ExtentClose()
-            {
-                extent.Flush();
-            }
-            
-        }
-        #endregion
-
+      
     }
 }

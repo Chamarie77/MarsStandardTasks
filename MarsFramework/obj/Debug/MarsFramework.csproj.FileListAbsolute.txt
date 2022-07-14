@@ -56,7 +56,6 @@ C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\Mar
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Crc32C.NET.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\DnsClient.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Excel.dll
-C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\ExtentReports.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\HtmlAgilityPack.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Microsoft.AspNetCore.Authentication.Abstractions.dll
@@ -123,6 +122,7 @@ C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\Mar
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\nunit.framework.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\RazorEngine.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\RazorEngine.NetCore.dll
+C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\RelevantCodes.ExtentReports.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\SeleniumExtras.PageObjects.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\SeleniumExtras.WaitHelpers.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\SharpCompress.dll
