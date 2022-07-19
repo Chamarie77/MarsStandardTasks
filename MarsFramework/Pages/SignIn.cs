@@ -41,19 +41,19 @@ namespace MarsFramework.Pages
 
         #endregion
 
-        public  void LoginSteps()
+        public  void LoginSteps(IWebDriver Driver)
         {
-
-          // GlobalDefinitions.wait(30);
-           Thread.Sleep(3000);
+                     
             GlobalDefinitions.Driver.Navigate().GoToUrl(ApplicationUrl);
 
+            try
+            {
             // Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
 
             //Click on SignIn button
-            // GlobalDefinitions.WaitForElement(driver, By.("//a[contains(text(),'Sign In')]"), 10);
-            Thread.Sleep(3000);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[contains(text(),'Sign In')]"), 5);
+           // Thread.Sleep(3000);
             SignIntab.Click();
 
             //Enter Email Address
@@ -63,10 +63,14 @@ namespace MarsFramework.Pages
             Password.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
 
             //Click on LoginButton
-            // GlobalDefinitions.WaitForElement(Driver, By.Name("password"), 10);
-            //GlobalDefinitions.wait(30);
-            Thread.Sleep(3000);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//button[contains(text(), 'Login')]"), 5);
             LoginBtn.Click();
+
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Didn't launch the url", ex.Message);
+            }
         }
     }
 }

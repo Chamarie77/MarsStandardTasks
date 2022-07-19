@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using static MarsFramework.Pages.ShareSkill;
 using System.Threading;
 using System;
-
+using AutoItX3Lib;
 
 
 
@@ -23,31 +23,26 @@ namespace MarsFramework
             [Test]
             public void Test_AddShareSkills()
             {
-               // Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-                //Log 'info'
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
                 test = extent.StartTest("Test_AddShareSkills");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddShareSkill demo");
                 ShareSkill page = new ShareSkill();
-                page.AddShareSkill();
-                //  Assert.IsTrue(true);
-                // test.Pass("Assertion passed");
-                //Assert.AreEqual(10, 10);
-
+                page.AddShareSkill(Driver);
+                
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test AddShareSkill Passed");
-
             }
+                      
 
             [Test]
             public void Test_ChangeSkills()
             {
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
                 test = extent.StartTest("Test_ChangeSkills");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_ChangeSkills demo");
                 ShareSkill page = new ShareSkill();
-                page.EditShareSkill();
-                //  Assert.IsTrue(true);
-                //test.Pass("Assertion passed");
+                page.EditShareSkill(Driver);
 
-                test.Log(RelevantCodes.ExtentReports.LogStatus.Fail, "Test Failed ChangeSkills Passed");
+                test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test Failed ChangeSkills Passed");
             }
 
             [Test]
@@ -56,9 +51,8 @@ namespace MarsFramework
                 test = extent.StartTest("Test_DeleteSkills");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_DeleteSkills demo");
                 ShareSkill page = new ShareSkill();
-                page.DeleteShareSkill();
-                //  Assert.IsTrue(true);
-                //  test.Pass("Assertion passed");
+                page.DeleteShareSkill(Driver);
+                
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test DeleteSkills Passed");
             }
 

@@ -23,6 +23,7 @@ namespace MarsFramework.Global
         public static string ScreenShotPath = MarsResource.ScreenShotPath;
         public static string ReportPath = MarsResource.ReportPath;
         public static string ReportXMLpath = MarsResource.ReportXMLPath;
+        public static string ImagePath = MarsResource.ImagePath;
 
         #endregion
 
@@ -37,21 +38,21 @@ namespace MarsFramework.Global
         [SetUp]
         public void Inititalize()
         {
-           // Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-             Thread.Sleep(3000);
-            // GlobalDefinitions.wait(30);
+          
+            Thread.Sleep(1000);
+           
             switch (Browser)
             {
                 case 1:
                     GlobalDefinitions.Driver = new FirefoxDriver();
                     break;
                 case 2:
-                    GlobalDefinitions.Driver = new ChromeDriver(@"C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework");
+                    GlobalDefinitions.Driver = new ChromeDriver();
                     //GlobalDefinitions.Driver = new ChromeDriver();
                     GlobalDefinitions.Driver.Manage().Window.Maximize();
                     break;
             }
-
+            
             #region Initialise Reports
 
             string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
@@ -69,35 +70,26 @@ namespace MarsFramework.Global
 
             extent = new ExtentReports(reportPath, false);
 
-            //extent = new ExtentReports(ReportPath, false, DisplayOrder.NewestFirst);
-            //  extent.LoadConfig(MarsResource.ReportXMLPath);
             extent.LoadConfig(projectPath + ReportXMLpath);
            
-             //  test = extent.StartTest("Mars Reports");
-
             #endregion
-
 
 
             if (MarsResource.IsLogin.ToLower() == "true")
             {
-                //GlobalDefinitions.WaitForElement(driver, By.XPath("//a[contains(text(),'Sign In')]"), 10);
-              //  Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-               // GlobalDefinitions.wait(10);
-                Thread.Sleep(3000);
+                Thread.Sleep(1000);
+                
                 SignIn loginobj = new SignIn();
-                loginobj.LoginSteps();
+                loginobj.LoginSteps(Driver);
             }
             else
             {
+                Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
                 SignUp obj = new SignUp();
                 obj.Register();
-                Thread.Sleep(2000);
-               //GlobalDefinitions.wait(30);
             }
         }
               
-
         public void CloseReports()
         {
             extent.EndTest(test);
@@ -108,25 +100,20 @@ namespace MarsFramework.Global
         public void TearDown()
         {
             // Screenshot
-            Thread.Sleep(2000);
-            //GlobalDefinitions.wait(30);
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
             String img = SaveScreenShotClass.SaveScreenshot(GlobalDefinitions.Driver, "Report");
             //Status logstatus = Status.Pass;
             test.Log(LogStatus.Info, "Image example: " + img);
             // end test. (TestReports)
             count++;
             extent.EndTest(test);
-           
-            
+                       
             // calling Flush writes everything to the log file (TestReports)
             extent.Flush();
             
             // Close the driver :)            
             GlobalDefinitions.Driver.Close();
             GlobalDefinitions.Driver.Quit();
-
-
-            
         }
 
         #endregion

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using MarsFramework.Global;
 using System;
 using System.Globalization;
-//using static NUnit.Core.NUnitFramework;
 using NUnit.Framework;
+using AutoItX3Lib;
+using OpenQA.Selenium.Chrome;
+
 namespace MarsFramework.Pages
 {
     internal class ShareSkill
@@ -78,10 +80,15 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "(//input[@placeholder = 'Add new tag'])[2]")]
         private IWebElement SkillExchange { get; set; }
 
+        //Click on Work Sample
+        [FindsBy(How= How.XPath, Using = "//i[@class = 'huge plus circle icon padding - 25']")]
+        private IWebElement WorkSample { get; set; }
+
         //Click on Active/Hidden option
         [FindsBy(How = How.XPath, Using = "//input[@name = 'isActive'][@value = 'false']")]
         private IWebElement ActiveOption { get; set; }
 
+        
         //Click on Save button
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         private IWebElement Save { get; set; }
@@ -102,34 +109,31 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//button[@class = 'ui icon positive right labeled button']")]
         private IWebElement ActionsButton { get; set; }
 
-        internal void AddShareSkill()
+        internal void AddShareSkill(IWebDriver Driver)
         {
            
             //Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "TestDataShareSkill");
-            //  GlobalDefinitions.WaitForElement(driver, By.LinkText("Share Skill") , 10);
-            Thread.Sleep(3000);
-           // GlobalDefinitions.wait(30);
+            
+            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Share Skill") , 5);
+                      
             //Click on Share Skill Link
             ShareSkillLink.Click();
-            Thread.Sleep(3000);
+          
             //Enter the Title
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
 
             //Enter the Description
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
-
-           // GlobalDefinitions.WaitForElement(driver, By.Name("Category"), 10);
-            Thread.Sleep(3000);
+                    
             //Select  Category Dropdown Option
             new SelectElement(CategoryDropDown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
 
-            //GlobalDefinitions.WaitForElement(driver, By.Name("SubCategory"), 10); ;
-            Thread.Sleep(3000);
             // Select  Sub Category Option
             new SelectElement(SubCategoryOption).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
 
             //Enter the tag names
+   
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
 
@@ -165,79 +169,94 @@ namespace MarsFramework.Pages
             SkillExchange.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "SkillExchange"));
             SkillExchange.SendKeys(Keys.Enter);
 
+            //upload a file
+            Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            
+            string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+
+            string actualPath = path.Substring(0, path.LastIndexOf("bin"));
+
+            string projectPath = new Uri(actualPath).LocalPath;
+
+            //Append the image path
+            string imagePath = projectPath + Base.ImagePath;
+
+            IWebElement fileUpload = Driver.FindElement(By.XPath("//i[@class = 'huge plus circle icon padding-25']"));
+            fileUpload.Click();
+            AutoItX3 autoIt = new AutoItX3();
+            autoIt.WinActivate("Open");
+
+            Thread.Sleep(1000);
+            autoIt.Send(imagePath);
+            autoIt.Send("{ENTER}");
+            Thread.Sleep(1000);
+
             //Select Active Hidden Option
             ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             ActiveOption.Click();
 
-            //GlobalDefinitions.WaitForElement(driver, By.XPath("//input[@value='Save']"), 10);
-            Thread.Sleep(3000);
-            //GlobalDefinitions.wait(30);
+
+            //Validate AddShareSkill
+            var expectedTitle = "SpecFlow";
+            var expectedDescription = "Could Be Provide";
+            var actualTitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
+            var actualDescription = GlobalDefinitions.ExcelLib.ReadData(2, "Description");
+
+            Assert.That(actualTitle == expectedTitle, "title does not match");
+            Assert.That(actualDescription == expectedDescription, "description does not match");
+
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@value='Save']"), 5);
+           
             //Click on Save Button   
             Save.Click();
-                     
-
         }
 
-        internal void EditShareSkill()
+        internal void EditShareSkill(IWebDriver Driver)
         {
-           // GlobalDefinitions.wait(30);
-            Thread.Sleep(1000);
+                    
             //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
 
             //Click on Manage Listing Link
-
-           // GlobalDefinitions.WaitForElement(driver, By.LinkText("Manage Listings"), 10);
-            Thread.Sleep(3000);
+            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 5);
             ManageListings.Click();
-
-            //Click on Edit Icon
-           // GlobalDefinitions.wait(30);
-            Thread.Sleep (2000);
-            Edit.Click();
-
-            //Change Share Skill's Title 
-             //GlobalDefinitions.wait(30);
-            Thread.Sleep(2000);
+ 
+            //Validate EditShare Skill
+            var createdTitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
+            if(createdTitle == "SpecFlow")
+            {
+                //Click on Edit Icon
+                GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 5);
+                Edit.Click();
+            }
+            else
+            {
+                Assert.Fail("Record to be edited hasn't been found");
+            }
+           
             Title.Clear();
-
-            //GlobalDefinitions.wait(30);
-            Thread.Sleep(2000);
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
-            //GlobalDefinitions.wait(30);
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@type = 'button'][@value ='Save'] "), 5);
             Save.Click();
-
-            //public void c_editManageShareskill()
-            //{
-            //    ManageListings managelistings = new ManageListings();
-            //    //managelistings.editListings();
-            //    string expectedtitle = managelistings.editListings();
-            //    string firstskilltitle = managelistings.getfirsttitle();
-            //    Assert.That(firstskilltitle == expectedtitle, "title doest not match");
-            //}
-
         }
 
-        internal void DeleteShareSkill()
+        internal void DeleteShareSkill(IWebDriver Driver)
         {
 
-            //GlobalDefinitions.wait(20);
-            Thread.Sleep(2000);
             //Click on Manage Listing Link
+            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 5);
             ManageListings.Click();
 
+           
             //Click on Delete icon
-            //GlobalDefinitions.wait(30);
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'remove icon']"), 5);
             Delete.Click();
+            
 
-            //GlobalDefinitions.wait(30);
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//button[@class = 'ui icon positive right labeled button']"), 5);
             //Click action button
             ActionsButton.Click();
-
         }
     }
 }

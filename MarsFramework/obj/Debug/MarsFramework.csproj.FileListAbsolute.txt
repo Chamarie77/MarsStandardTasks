@@ -114,6 +114,7 @@ C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\Mar
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Microsoft.Extensions.Options.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Microsoft.Extensions.Primitives.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Microsoft.Net.Http.Headers.dll
+C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\MongoDB.Bson.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\MongoDB.Driver.Core.dll
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\MongoDB.Driver.dll
@@ -231,6 +232,9 @@ C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\Mar
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\bin\Debug\System.Web.Razor.xml
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\MarsFramework.csproj.AssemblyReference.cache
+C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\MarsFramework.csproj.SuggestedBindingRedirects.cache
+C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\Interop.AutoItX3Lib.dll
+C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\MarsFramework.csproj.ResolveComReference.cache
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\MarsFramework.Config.MarsResource.resources
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\MarsFramework.csproj.GenerateResource.cache
 C:\Personal\Chamarie\IndustryConnect\MarsCompetitionTask\MarsCompetitionTask\MarsFramework\obj\Debug\MarsFramework.csproj.CoreCompileInputs.cache

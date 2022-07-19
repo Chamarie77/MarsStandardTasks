@@ -29,10 +29,9 @@ namespace MarsFramework.Global
         public static IWebElement WaitForElement(IWebDriver Driver, By by, int timeOutinSeconds)
         {
             WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(timeOutinSeconds));
-            return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(by));
+            return wait.Until(ExpectedConditions.ElementIsVisible(by));
         }
         #endregion
-
 
         #region Excel 
         public class ExcelLib
@@ -46,12 +45,10 @@ namespace MarsFramework.Global
                 public string colValue { get; set; }
             }
 
-
             public static void ClearData()
             {
                 dataCol.Clear();
             }
-
 
             private static DataTable ExcelToDataTable(string fileName, string SheetName)
             {
@@ -89,9 +86,6 @@ namespace MarsFramework.Global
                     string data = (from colData in dataCol
                                    where colData.colName == columnName && colData.rowNumber == rowNumber
                                    select colData.colValue).SingleOrDefault();
-
-                    //var datas = dataCol.Where(x => x.colName == columnName && x.rowNumber == rowNumber).SingleOrDefault().colValue;
-
 
                     return data.ToString();
                 }
@@ -140,8 +134,6 @@ namespace MarsFramework.Global
             {
                 var folderLocation = Base.ScreenShotPath;
 
-                //var projectPath = System.IO.Path.GetFullPath(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\.."));
-
                 string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
 
                 string actualPath = path.Substring(0, path.LastIndexOf("bin"));
@@ -161,7 +153,6 @@ namespace MarsFramework.Global
 
                 fileName.Append(ScreenShotFileName);
                 fileName.Append(DateTime.Now.ToString("_dd-mm-yyyy_mss"));
-                //fileName.Append(DateTime.Now.ToString("dd-mm-yyyym_ss"));
                 fileName.Append(".jpeg");
                 screenShot.SaveAsFile(fileName.ToString(), ScreenshotImageFormat.Jpeg);
                 return fileName.ToString();
