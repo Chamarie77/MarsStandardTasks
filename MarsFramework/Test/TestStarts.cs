@@ -1,13 +1,7 @@
-﻿using NUnit.Framework;
-using MarsFramework.Config;
-using MarsFramework.Global;
-using static MarsFramework.Global.GlobalDefinitions;
-using MarsFramework.Pages;
-using OpenQA.Selenium;
-using static MarsFramework.Pages.ShareSkill;
-using System.Threading;
+﻿using MarsFramework.Pages;
+using NUnit.Framework;
 using System;
-using AutoItX3Lib;
+using static MarsFramework.Global.GlobalDefinitions;
 
 
 
@@ -28,10 +22,10 @@ namespace MarsFramework
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddShareSkill demo");
                 ShareSkill page = new ShareSkill();
                 page.AddShareSkill(Driver);
-                
+
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test AddShareSkill Passed");
             }
-                      
+
 
             [Test, Order(2)]
             public void Test_EditShareSkills()
@@ -52,7 +46,7 @@ namespace MarsFramework
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_DeleteSkills demo");
                 ShareSkill page = new ShareSkill();
                 page.DeleteShareSkill(Driver);
-                
+
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test DeleteSkills Passed");
             }
             [Test, Order(4)]

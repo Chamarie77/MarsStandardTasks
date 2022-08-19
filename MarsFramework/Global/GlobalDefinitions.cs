@@ -1,15 +1,13 @@
 ﻿using Excel;
 using OpenQA.Selenium;
-using SeleniumExtras.WaitHelpers;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
-using RelevantCodes.ExtentReports;
-using NUnit.Framework;
 
 
 
@@ -161,6 +159,6 @@ namespace MarsFramework.Global
         }
         #endregion
 
-      
+
     }
 }

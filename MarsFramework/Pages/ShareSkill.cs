@@ -1,15 +1,11 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support;
+﻿using AutoItX3Lib;
+using MarsFramework.Global;
+using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
-using System.Threading;
-using System.Threading.Tasks;
-using MarsFramework.Global;
 using System;
-using System.Globalization;
-using NUnit.Framework;
-using AutoItX3Lib;
-using OpenQA.Selenium.Chrome;
+using System.Threading;
 
 namespace MarsFramework.Pages
 {
@@ -39,7 +35,7 @@ namespace MarsFramework.Pages
         //Select Sub Category Option
         [FindsBy(How = How.Name, Using = "subcategoryId")]
         private IWebElement SubCategoryOption { get; set; }
-  
+
         //Enter Tag names in textbox
         [FindsBy(How = How.XPath, Using = "(//input[@placeholder = 'Add new tag'])[1]")]
         private IWebElement Tags { get; set; }
@@ -81,14 +77,14 @@ namespace MarsFramework.Pages
         private IWebElement SkillExchange { get; set; }
 
         //Click on Work Sample
-        [FindsBy(How= How.XPath, Using = "//i[@class = 'huge plus circle icon padding - 25']")]
+        [FindsBy(How = How.XPath, Using = "//i[@class = 'huge plus circle icon padding - 25']")]
         private IWebElement WorkSample { get; set; }
 
         //Click on Active/Hidden option
         [FindsBy(How = How.XPath, Using = "//input[@name = 'isActive'][@value = 'false']")]
         private IWebElement ActiveOption { get; set; }
 
-        
+
         //Click on Save button
         [FindsBy(How = How.XPath, Using = "//input[@value='Save']")]
         private IWebElement Save { get; set; }
@@ -111,21 +107,21 @@ namespace MarsFramework.Pages
 
         internal void AddShareSkill(IWebDriver Driver)
         {
-           
+
             //Populate the excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "TestDataShareSkill");
-            
-            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Share Skill") , 5);
-                      
+
+            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Share Skill"), 5);
+
             //Click on Share Skill Link
             ShareSkillLink.Click();
-          
+
             //Enter the Title
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
 
             //Enter the Description
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
-                    
+
             //Select  Category Dropdown Option
             new SelectElement(CategoryDropDown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
 
@@ -133,7 +129,7 @@ namespace MarsFramework.Pages
             new SelectElement(SubCategoryOption).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "SubCategory"));
 
             //Enter the tag names
-   
+
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
 
@@ -162,7 +158,7 @@ namespace MarsFramework.Pages
             EndTimeDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "EndTime"));
 
             //Select Skill Trade option
-            SkillTradeOption.SendKeys (GlobalDefinitions.ExcelLib.ReadData (2, "SkillTrade"));
+            SkillTradeOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "SkillTrade"));
             SkillTradeOption.Click();
 
             //Enter Skill Exchange
@@ -171,7 +167,7 @@ namespace MarsFramework.Pages
 
             //upload a file
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            
+
             string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
 
             string actualPath = path.Substring(0, path.LastIndexOf("bin"));
@@ -206,24 +202,24 @@ namespace MarsFramework.Pages
             Assert.That(actualDescription == expectedDescription, "description does not match");
 
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@value='Save']"), 5);
-           
+
             //Click on Save Button   
             Save.Click();
         }
 
         internal void EditShareSkill(IWebDriver Driver)
         {
-                    
+
             //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
 
             //Click on Manage Listing Link
             GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 20);
             ManageListings.Click();
- 
+
             //Validate EditShare Skill
             var createdTitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
-            if(createdTitle == "SpecFlow")
+            if (createdTitle == "SpecFlow")
             {
                 //Click on Edit Icon
                 GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 20);
@@ -233,7 +229,7 @@ namespace MarsFramework.Pages
             {
                 Assert.Fail("Record to be edited hasn't been found");
             }
-           
+
             Title.Clear();
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
@@ -248,11 +244,11 @@ namespace MarsFramework.Pages
             GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 5);
             ManageListings.Click();
 
-           
+
             //Click on Delete icon
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'remove icon']"), 5);
             Delete.Click();
-            
+
 
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//button[@class = 'ui icon positive right labeled button']"), 5);
             //Click action button

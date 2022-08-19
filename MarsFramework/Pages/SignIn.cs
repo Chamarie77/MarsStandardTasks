@@ -1,20 +1,13 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
-using System;
+﻿using MarsFramework.Config;
 using MarsFramework.Global;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Text;
-using static MarsFramework.Global.GlobalDefinitions;
-using MarsFramework.Config;
+using System;
 
 namespace MarsFramework.Pages
 {
-    class SignIn 
+    class SignIn
     {
         public static string ApplicationUrl = MarsResource.ApplicationUrl;
         public SignIn()
@@ -41,30 +34,30 @@ namespace MarsFramework.Pages
 
         #endregion
 
-        public  void LoginSteps(IWebDriver Driver)
+        public void LoginSteps(IWebDriver Driver)
         {
-                     
+
             GlobalDefinitions.Driver.Navigate().GoToUrl(ApplicationUrl);
 
             try
             {
-            // Populate the excel data
-            GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
+                // Populate the excel data
+                GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPath, "SignIn");
 
-            //Click on SignIn button
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[contains(text(),'Sign In')]"), 5);
-           // Thread.Sleep(3000);
-            SignIntab.Click();
+                //Click on SignIn button
+                GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[contains(text(),'Sign In')]"), 5);
+                // Thread.Sleep(3000);
+                SignIntab.Click();
 
-            //Enter Email Address
-            Email.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Email"));
+                //Enter Email Address
+                Email.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Email"));
 
-            //Enter Password
-            Password.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
+                //Enter Password
+                Password.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
 
-            //Click on LoginButton
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//button[contains(text(), 'Login')]"), 5);
-            LoginBtn.Click();
+                //Click on LoginButton
+                GlobalDefinitions.WaitForElement(Driver, By.XPath("//button[contains(text(), 'Login')]"), 5);
+                LoginBtn.Click();
 
             }
             catch (Exception ex)

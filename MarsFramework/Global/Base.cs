@@ -1,14 +1,12 @@
 ﻿using MarsFramework.Config;
 using MarsFramework.Pages;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 using RelevantCodes.ExtentReports;
 using System;
-using static MarsFramework.Global.GlobalDefinitions;
 using System.Threading;
+using static MarsFramework.Global.GlobalDefinitions;
 
 namespace MarsFramework.Global
 {
@@ -39,9 +37,9 @@ namespace MarsFramework.Global
         [SetUp]
         public void Inititalize()
         {
-          
+
             Thread.Sleep(1000);
-           
+
             switch (Browser)
             {
                 case 1:
@@ -53,7 +51,7 @@ namespace MarsFramework.Global
                     GlobalDefinitions.Driver.Manage().Window.Maximize();
                     break;
             }
-            
+
             #region Initialise Reports
 
             string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
@@ -72,14 +70,14 @@ namespace MarsFramework.Global
             extent = new ExtentReports(reportPath, false);
 
             extent.LoadConfig(projectPath + ReportXMLpath);
-           
+
             #endregion
 
 
             if (MarsResource.IsLogin.ToLower() == "true")
             {
                 Thread.Sleep(1000);
-                
+
                 SignIn loginobj = new SignIn();
                 loginobj.LoginSteps(Driver);
             }
@@ -90,7 +88,7 @@ namespace MarsFramework.Global
                 obj.Register();
             }
         }
-              
+
         public void CloseReports()
         {
             extent.EndTest(test);
@@ -108,10 +106,10 @@ namespace MarsFramework.Global
             // end test. (TestReports)
             count++;
             extent.EndTest(test);
-                       
+
             // calling Flush writes everything to the log file (TestReports)
             extent.Flush();
-            
+
             // Close the driver :)            
             GlobalDefinitions.Driver.Close();
             GlobalDefinitions.Driver.Quit();

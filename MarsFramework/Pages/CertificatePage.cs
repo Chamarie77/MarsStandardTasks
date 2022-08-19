@@ -1,15 +1,8 @@
 ﻿using MarsFramework.Global;
-using SeleniumExtras.PageObjects;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using OpenQA.Selenium.Chrome;
-using NUnit.Framework;
 
 namespace MarsFramework.Pages
 {
@@ -31,7 +24,7 @@ namespace MarsFramework.Pages
             Extension.WaitForElementDisplayed(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 20);
             IWebElement DropDownOption = Driver.FindElement(By.XPath("//a[text()[contains(.,'Go to Profile')]] "));
             DropDownOption.Click();
-                        
+
             // Go to Certifications Tab
             IWebElement CertificationsTab = Driver.FindElement(By.XPath("//a[text() = 'Certifications'] "));
             Extension.WaitForElementDisplayed(Driver, By.XPath("//a[text() = 'Certifications']"), 20);
@@ -55,7 +48,7 @@ namespace MarsFramework.Pages
             //Click on the Received Year Dropdown
             IWebElement YearDropDown = Driver.FindElement(By.Name("certificationYear"));
             new SelectElement(YearDropDown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Year"));
-                               
+
             //Click on AddCertification Button
             IWebElement AddCertificationButton = Driver.FindElement(By.XPath("//input[@type = 'button'][@value = 'Add']"));
             Extension.WaitForElementClickable(AddCertificationButton, Driver, 20);
@@ -77,7 +70,7 @@ namespace MarsFramework.Pages
             DropDownLink.Click();
 
             //Go to Profile Page
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 30); 
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 30);
             IWebElement DropDownOption = Driver.FindElement(By.XPath("//a[text()[contains(.,'Go to Profile')]] "));
             DropDownOption.Click();
 
@@ -87,21 +80,21 @@ namespace MarsFramework.Pages
             CertificationsTab.Click();
 
             var ExpectedEditedCertificate = (GlobalDefinitions.ExcelLib.ReadData(2, "EditedCertificate"));
-           
+
             //Validate Edited Certification
-            if(ExpectedEditedCertificate == "Java")
+            if (ExpectedEditedCertificate == "Java")
             {
                 //Click on Edit Write Icon
                 GlobalDefinitions.WaitForElement(Driver, By.XPath("(//i[@class ='outline write icon'])[5]"), 30);
                 IWebElement EditIcon = Driver.FindElement(By.XPath("(//i[@class ='outline write icon'])[5]"));
                 EditIcon.Click();
-               
+
             }
             else
             {
                 Assert.Fail("Record to be edited hasn't been found");
             }
-            
+
             // Enter Edited Certificate
             IWebElement EditCertificationTextBox = Driver.FindElement(By.Name("certificationName"));
             EditCertificationTextBox.Clear();
@@ -138,7 +131,7 @@ namespace MarsFramework.Pages
             DropDownLink.Click();
 
             //Go to Profile Page
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 30); 
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 30);
             IWebElement DropDownOption = Driver.FindElement(By.XPath("//a[text()[contains(.,'Go to Profile')]] "));
             DropDownOption.Click();
 
@@ -150,7 +143,7 @@ namespace MarsFramework.Pages
             //Validation Delete Button
             var EditedCertificate = GlobalDefinitions.ExcelLib.ReadData(2, "EditedCertificate");
 
-            if(EditedCertificate == "Java")
+            if (EditedCertificate == "Java")
             {
                 //Click on Remove Icon
                 GlobalDefinitions.WaitForElement(Driver, By.XPath("(//i[@class = 'remove icon'])[5]"), 30);
