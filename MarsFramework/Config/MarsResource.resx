@@ -136,6 +136,9 @@
     <value>\MarsFramework\ExcelData\EditTestData.xlsx</value>
     <comment>Edit Test Data</comment>
   </data>
+  <data name="ExcelPathProfilePage" xml:space="preserve">
+    <value>\MarsFramework\ExcelData\ProfilePageData.xlsx</value>
+  </data>
   <data name="ImagePath" xml:space="preserve">
     <value>Image\Sunflower.JPG</value>
   </data>

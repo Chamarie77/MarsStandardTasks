@@ -20,6 +20,7 @@ namespace MarsFramework.Global
         public static String ExcelPath = MarsResource.ExcelPath;
         public static String ExcelPathEdit = MarsResource.ExcelPathEdit;
         public static String ExcelPathDelete = MarsResource.ExcelPathDelete;
+        public static String ExcelPathProfilePage = MarsResource.ExcelPathProfilePage;
         public static string ScreenShotPath = MarsResource.ScreenShotPath;
         public static string ReportPath = MarsResource.ReportPath;
         public static string ReportXMLpath = MarsResource.ReportXMLPath;

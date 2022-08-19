@@ -218,7 +218,7 @@ namespace MarsFramework.Pages
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
 
             //Click on Manage Listing Link
-            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 5);
+            GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 20);
             ManageListings.Click();
  
             //Validate EditShare Skill
@@ -226,7 +226,7 @@ namespace MarsFramework.Pages
             if(createdTitle == "SpecFlow")
             {
                 //Click on Edit Icon
-                GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 5);
+                GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 20);
                 Edit.Click();
             }
             else
@@ -237,7 +237,7 @@ namespace MarsFramework.Pages
             Title.Clear();
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
 
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@type = 'button'][@value ='Save'] "), 5);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@type = 'button'][@value ='Save'] "), 20);
             Save.Click();
         }
 

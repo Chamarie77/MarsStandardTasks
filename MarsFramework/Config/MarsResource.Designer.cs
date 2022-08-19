@@ -106,6 +106,15 @@ namespace MarsFramework.Config {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to \MarsFramework\ExcelData\ProfilePageData.xlsx.
+        /// </summary>
+        internal static string ExcelPathProfilePage {
+            get {
+                return ResourceManager.GetString("ExcelPathProfilePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image\Sunflower.JPG.
         /// </summary>
         internal static string ImagePath {

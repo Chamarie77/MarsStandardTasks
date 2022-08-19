@@ -12,6 +12,7 @@ using RelevantCodes.ExtentReports;
 using NUnit.Framework;
 
 
+
 namespace MarsFramework.Global
 {
     class GlobalDefinitions
