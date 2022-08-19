@@ -2,7 +2,6 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System.Threading;
 
 namespace MarsFramework.Pages
 {
@@ -15,9 +14,8 @@ namespace MarsFramework.Pages
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "CetificationsPageData");
 
             //Click on Dropdown Link
-            Thread.Sleep(3000);
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 30);
             IWebElement DropDownLink = Driver.FindElement(By.XPath("//span[contains(@class, 'item ui dropdown link')]"));
-            //Extension.WaitForElementClickable(DropDownLink, Driver, 20);
             DropDownLink.Click();
 
             //Go to Profile Page
@@ -51,9 +49,9 @@ namespace MarsFramework.Pages
 
             //Click on AddCertification Button
             IWebElement AddCertificationButton = Driver.FindElement(By.XPath("//input[@type = 'button'][@value = 'Add']"));
-            Extension.WaitForElementClickable(AddCertificationButton, Driver, 20);
+            Extension.WaitForElementClickable(AddCertificationButton, Driver, 50);
             AddCertificationButton.Click();
-            Thread.Sleep(3000);
+
 
         }
         #endregion
@@ -115,7 +113,6 @@ namespace MarsFramework.Pages
             IWebElement UpdateButton = Driver.FindElement(By.XPath("//input[@type = 'button'][@value = 'Update']"));
             Extension.WaitForElementClickable(UpdateButton, Driver, 50);
             UpdateButton.Click();
-            Thread.Sleep(3000);
         }
         #endregion
 
