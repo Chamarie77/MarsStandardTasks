@@ -1,37 +1,106 @@
 ﻿using MarsFramework.Global;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 
 namespace MarsFramework.Pages
 {
     internal class ProfilePage
     {
         #region Add Language
+        public ProfilePage()
+        {
+            PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
+        }
 
-        public void AddLanguageSteps(IWebDriver Driver)
+        //Click on Dropdown link
+        [FindsBy(How = How.XPath, Using = "//span[contains(@class, 'item ui dropdown link')]")]
+        private IWebElement DropDownLink { get; set; }
+
+        //Go to Profile Page
+        [FindsBy(How = How.XPath, Using = "//a[text()[contains(.,'Go to Profile')]]")]
+        private IWebElement GotoProfile { get; set; }
+
+        // Click on Description Write Icon
+        [FindsBy(How = How.XPath, Using = "//i[@class = 'outline write icon']")]
+        private IWebElement DescriptionWriteIcon { get; set; }
+
+        //Enter Description
+        [FindsBy(How = How.XPath, Using = "//form/div/div/div[2]/div[1]/textarea")]
+        private IWebElement Description { get; set; }
+
+        //Save Description
+        [FindsBy(How = How.XPath, Using = "//form/div/div/div[2]/button")]
+        private IWebElement SaveDescription { get; set; }
+
+        //Select Language tab
+        [FindsBy(How = How.XPath, Using = "//a[text()[contains(. , 'Languages')]]")]
+        private IWebElement LanguageTab { get; set; }
+
+        //Click on Language AddNew Button
+        [FindsBy(How = How.XPath, Using = "(//div[contains(text(),'Add New')])[1]")]
+        private IWebElement LanguageAddNewButton { get; set; }
+
+        //Enter a New Language
+        [FindsBy(How = How.XPath, Using = "//input[@placeholder = 'Add Language']")]
+        private IWebElement AddLanguageTextBox { get; set; }
+
+        //Click on Language Level Dropdown
+        [FindsBy(How = How.XPath, Using = "//select[@class = 'ui dropdown'][@name = 'level']")]
+        private IWebElement LanguageLevelDropDown { get; set; }
+
+        //Click on Add Button
+        [FindsBy(How = How.XPath, Using = "//input[@type = 'button'][@value = 'Add']")]
+        private IWebElement AddLanguageButton { get; set; }
+
+        //Click on language edit write icon
+        [FindsBy(How = How.XPath, Using = "(//i[@class = 'outline write icon'])[2]")]
+        private IWebElement LanguageEditWriteIcon { get; set; }
+
+        // Enter Edited Language
+        [FindsBy(How = How.XPath, Using = "//input[@placeholder = 'Add Language']")]
+        private IWebElement EditLanguageTextBox { get; set; }
+
+        // Click on Edit Language Dropdown
+        [FindsBy(How = How.XPath, Using = "//select[@class = 'ui dropdown'][@name = 'level']")]
+        private IWebElement EditLanguageLevelDropDown { get; set; }
+
+        //Click on Update Button
+        [FindsBy(How = How.XPath, Using = "(//input[@type = 'button'][@value = 'Update'])[1]")]
+        private IWebElement LanguageUpdateButton { get; set; }
+
+        //Click on Delete Icon
+        [FindsBy(How = How.XPath, Using = "(//i[@class = 'remove icon'])[1]")]
+        private IWebElement DeleteLanguage { get; set; }
+
+        private void GoToLanguageTab(IWebDriver Driver)
+        {
+            //Click on Dropdown link
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 30);
+            DropDownLink.Click();
+
+            //Go to Profile Page
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 30);
+            GotoProfile.Click();
+
+            //Select Language tab
+            LanguageTab.Click();
+        }
+
+
+        internal void AddLanguageSteps(IWebDriver Driver)
         {
             //Populate the excel data    
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "LanguagePageData");
 
-            //Click on Dropdown link
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 50);
-            IWebElement DropDownLink = Driver.FindElement(By.XPath("//span[contains(@class, 'item ui dropdown link')]"));
-            DropDownLink.Click();
-
-            //Go to Profile Page
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 50);
-            IWebElement GotoProfile = Driver.FindElement(By.XPath("//a[text()[contains(.,'Go to Profile')]]"));
-            GotoProfile.Click();
+            GoToLanguageTab(Driver);
 
             // Click on Description Write Icon
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 50);
-            IWebElement DescriptionWriteIcon = Driver.FindElement(By.XPath("//i[@class = 'outline write icon']"));
             DescriptionWriteIcon.Click();
 
             // Clean the former descriptions
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//form/div/div/div[2]/div[1]/textarea"), 50);
-            IWebElement Description = Driver.FindElement(By.XPath("//form/div/div/div[2]/div[1]/textarea"));
             Description.Clear();
 
             //Enter Description
@@ -42,42 +111,21 @@ namespace MarsFramework.Pages
 
             //Save Description
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//form/div/div/div[2]/button"), 30);
-            IWebElement SaveDescription = Driver.FindElement(By.XPath("//form/div/div/div[2]/button"));
             SaveDescription.Click();
-
-            //Select Language tab
-            IWebElement LanguageTab = Driver.FindElement(By.XPath("//a[text()[contains(. , 'Languages')]]"));
-            LanguageTab.Click();
 
             //Click on Language AddNew Button
             GlobalDefinitions.WaitForElement(Driver, By.XPath("(//div[contains(text(),'Add New')])[1]"), 30);
-            IWebElement LanguageAddNewButton = Driver.FindElement(By.XPath("(//div[contains(text(),'Add New')])[1]"));
             LanguageAddNewButton.Click();
 
-
             //Enter a New Language
-            IWebElement AddLanguageTextBox = Driver.FindElement(By.XPath("//input[@placeholder = 'Add Language']"));
             AddLanguageTextBox.Clear();
             AddLanguageTextBox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Language"));
 
             //Click on Language Level Dropdown
-            IWebElement LanguageLevelDropDown = Driver.FindElement(By.XPath("//select[@class = 'ui dropdown'][@name = 'level']"));
             new SelectElement(LanguageLevelDropDown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "Level"));
 
-            //Validate Add Language
-            var expectedLanguage = "Maori";
-            var expectedLanguageLevel = "Basic";
-            var actualLanguage = GlobalDefinitions.ExcelLib.ReadData(2, "Language");
-            var actualLanguageLevel = GlobalDefinitions.ExcelLib.ReadData(2, "Level");
-
-            Assert.That(expectedLanguage == actualLanguage, "Language does not match");
-            Assert.That(expectedLanguageLevel == actualLanguageLevel, "Language Level does not match");
-
-            //Click on Add Button
-            IWebElement AddLanguageButton = Driver.FindElement(By.XPath("//input[@type = 'button'][@value = 'Add']"));
             Extension.WaitForElementClickable(AddLanguageButton, Driver, 50); ;
             AddLanguageButton.Click();
-
         }
         #endregion
 
@@ -87,74 +135,31 @@ namespace MarsFramework.Pages
             //Populate the EXcel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "LanguagePageData");
 
+            GoToLanguageTab(Driver);
 
-            //Click on Dropdown link
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 30);
-            IWebElement DropDownLink = Driver.FindElement(By.XPath("//span[contains(@class, 'item ui dropdown link')]"));
-            DropDownLink.Click();
-
-            //Go to Profile Page
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 30);
-            IWebElement GotoProfile = Driver.FindElement(By.XPath("//a[text()[contains(.,'Go to Profile')]]"));
-            GotoProfile.Click();
-
-            //Select Language tab
-            IWebElement LanguageTab = Driver.FindElement(By.XPath("//a[text()[contains(. , 'Languages')]]"));
-            LanguageTab.Click();
-
-            var ExpectedEditedLanguage = GlobalDefinitions.ExcelLib.ReadData(2, "UpdateLanguage");
-
-            if (ExpectedEditedLanguage == "Sinhalese")
-            {
-
-                //Click on language edit write icon
-                GlobalDefinitions.WaitForElement(Driver, By.XPath("(//i[@class = 'outline write icon'])[2]"), 50);
-                IWebElement LanguageEditWriteIcon = Driver.FindElement(By.XPath("(//i[@class = 'outline write icon'])[2]"));
-                LanguageEditWriteIcon.Click();
-            }
-            else
-            {
-                Assert.Fail("Record to be edited hasn't been found");
-            }
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("(//i[@class = 'outline write icon'])[2]"), 50);
+            LanguageEditWriteIcon.Click();
 
             // Enter Edited Language
-            IWebElement EditLanguageTextBox = Driver.FindElement(By.XPath("//input[@placeholder = 'Add Language']"));
             EditLanguageTextBox.Clear();
             EditLanguageTextBox.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "UpdateLanguage"));
 
             // Click on Edit Language Dropdown
-            IWebElement EditLanguageLevelDropDown = Driver.FindElement(By.XPath("//select[@class = 'ui dropdown'][@name = 'level']"));
             new SelectElement(EditLanguageLevelDropDown).SelectByText(GlobalDefinitions.ExcelLib.ReadData(2, "UpdateLevel"));
-
 
             //Click on Update Button
             GlobalDefinitions.WaitForElement(Driver, By.XPath("(//input[@type = 'button'][@value = 'Update'])[1]"), 30);
-            IWebElement LanguageUpdateButton = Driver.FindElement(By.XPath("(//input[@type = 'button'][@value = 'Update'])[1]"));
             LanguageUpdateButton.Click();
         }
-
         #endregion
 
         #region Delete Language
-        public void DeleteLanguageSteps(IWebDriver Driver)
+        public bool DeleteLanguageSteps(IWebDriver Driver)
         {
             //Populate the EXcel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "LanguagePageData");
 
-
-            //Click on Dropdown link
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 50);
-            IWebElement DropDownLink = Driver.FindElement(By.XPath("//span[contains(@class, 'item ui dropdown link')]"));
-            DropDownLink.Click();
-
-            //Go to Profile Page
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//a[text()[contains(.,'Go to Profile')]]"), 50);
-            IWebElement GotoProfile = Driver.FindElement(By.XPath("//a[text()[contains(.,'Go to Profile')]]"));
-            GotoProfile.Click();
-
-            //Select Language tab
-            IWebElement LanguageTab = Driver.FindElement(By.XPath("//a[text()[contains(. , 'Languages')]]"));
-            LanguageTab.Click();
+            GoToLanguageTab(Driver);
 
             //Validate Delete Language
             var editedLanguage = GlobalDefinitions.ExcelLib.ReadData(2, "UpdateLanguage");
@@ -163,12 +168,12 @@ namespace MarsFramework.Pages
             {
                 //Click on Delete Icon
                 Extension.WaitForElementDisplayed(Driver, By.XPath("(//i[@class = 'remove icon'])[1]"), 10);
-                IWebElement DeleteLanguage = Driver.FindElement(By.XPath("(//i[@class = 'remove icon'])[1]"));
                 DeleteLanguage.Click();
+                return true;
             }
             else
             {
-                Assert.Fail("Record to be deleted hasn't been found");
+                return false;
             }
         }
         #endregion
