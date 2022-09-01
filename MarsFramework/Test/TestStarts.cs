@@ -21,7 +21,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_AddShareSkills");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddShareSkill demo");
                 ShareSkill page = new ShareSkill();
-                page.AddShareSkill(Driver);
+                page.AddShareSkill();
 
                 //Validate AddShareSkill
                 var expectedTitle = "SpecFlow";
@@ -40,7 +40,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_ChangeSkills");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_ChangeSkills demo");
                 ShareSkill page = new ShareSkill();
-                page.EditShareSkill(Driver);
+                page.EditShareSkill();
 
                 //Validate Edit Share Skill
                 var actualTitle = Global.GlobalDefinitions.ExcelLib.ReadData(2, "Title");
@@ -54,7 +54,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_DeleteSkills");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_DeleteSkills demo");
                 ShareSkill page = new ShareSkill();
-                page.DeleteShareSkill(Driver);
+                page.DeleteShareSkill();
 
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Pass, "Test DeleteSkills Passed");
             }
@@ -65,7 +65,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_AddLanguage");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddLanguage demo");
                 ProfilePage page = new ProfilePage();
-                page.AddLanguageSteps(Driver);
+                page.AddLanguageSteps();
 
                 //Validate Add Language
                 var expectedLanguage = "Maori";
@@ -83,7 +83,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_EditLanguage");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_EditLanguage demo");
                 ProfilePage page = new ProfilePage();
-                page.EditLanguageSteps(Driver);
+                page.EditLanguageSteps();
 
                 // Validte Edit Language
                 var ExpectedEditedLanguage = "Sinhalese";
@@ -102,7 +102,7 @@ namespace MarsFramework
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_DeleteLanguage demo");
                 ProfilePage page = new ProfilePage();
 
-                Assert.IsTrue(page.DeleteLanguageSteps(Driver), "Recorded deleted");
+                Assert.IsTrue(page.DeleteLanguageSteps(), "Recorded deleted");
             }
 
             [Test, Order(7)]
@@ -111,7 +111,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_AddCertification");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddCertification demo");
                 CertificatePage page = new CertificatePage();
-                page.AddCertificate(Driver);
+                page.AddCertificate();
 
                 //Validate Add Certificate
                 var expectedCertificate = "Software Tester (Foundation Level)";
@@ -129,7 +129,7 @@ namespace MarsFramework
                 test = extent.StartTest("Test_EditCertification");
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_EditCertification demo");
                 CertificatePage page = new CertificatePage();
-                page.EditCertificate(Driver);
+                page.EditCertificate();
 
                 // Validte Edit Certificate
                 var ExpectedEditedCertificate = "Java";
@@ -148,7 +148,7 @@ namespace MarsFramework
                 test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_DeleteCertification demo");
                 CertificatePage page = new CertificatePage();
 
-                Assert.IsTrue(page.DeleteCertificate(Driver), "Record Deleted");
+                Assert.IsTrue(page.DeleteCertificate(), "Record Deleted");
             }
         }
     }

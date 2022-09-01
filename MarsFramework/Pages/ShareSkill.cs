@@ -15,6 +15,9 @@ namespace MarsFramework.Pages
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
         }
 
+        IWebDriver Driver = Global.GlobalDefinitions.Driver;
+
+
         //Click on ShareSkill Link
         [FindsBy(How = How.LinkText, Using = "Share Skill")]
         private IWebElement ShareSkillLink { get; set; }
@@ -104,7 +107,7 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//button[@class = 'ui icon positive right labeled button']")]
         private IWebElement ActionsButton { get; set; }
 
-        internal void AddShareSkill(IWebDriver Driver)
+        internal void AddShareSkill()
         {
 
             //Populate the excel data
@@ -195,7 +198,7 @@ namespace MarsFramework.Pages
             Save.Click();
         }
 
-        internal void EditShareSkill(IWebDriver Driver)
+        internal void EditShareSkill()
         {
             //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
@@ -214,7 +217,7 @@ namespace MarsFramework.Pages
             Save.Click();
         }
 
-        internal void DeleteShareSkill(IWebDriver Driver)
+        internal void DeleteShareSkill()
         {
             //Click on Manage Listing Link
             GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 5);

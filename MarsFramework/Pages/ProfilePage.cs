@@ -13,6 +13,9 @@ namespace MarsFramework.Pages
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
         }
 
+        IWebDriver Driver = Global.GlobalDefinitions.Driver;
+
+
         //Click on Dropdown link
         [FindsBy(How = How.XPath, Using = "//span[contains(@class, 'item ui dropdown link')]")]
         private IWebElement DropDownLink { get; set; }
@@ -73,7 +76,7 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "(//i[@class = 'remove icon'])[1]")]
         private IWebElement DeleteLanguage { get; set; }
 
-        private void GoToLanguageTab(IWebDriver Driver)
+        private void GoToLanguageTab()
         {
             //Click on Dropdown link
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 30);
@@ -88,12 +91,12 @@ namespace MarsFramework.Pages
         }
 
 
-        internal void AddLanguageSteps(IWebDriver Driver)
+        internal void AddLanguageSteps()
         {
             //Populate the excel data    
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "LanguagePageData");
 
-            GoToLanguageTab(Driver);
+            GoToLanguageTab();
 
             // Click on Description Write Icon
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 50);
@@ -130,12 +133,12 @@ namespace MarsFramework.Pages
         #endregion
 
         #region Edit Language
-        public void EditLanguageSteps(IWebDriver Driver)
+        public void EditLanguageSteps()
         {
             //Populate the EXcel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "LanguagePageData");
 
-            GoToLanguageTab(Driver);
+            GoToLanguageTab();
 
             GlobalDefinitions.WaitForElement(Driver, By.XPath("(//i[@class = 'outline write icon'])[2]"), 50);
             LanguageEditWriteIcon.Click();
@@ -154,12 +157,12 @@ namespace MarsFramework.Pages
         #endregion
 
         #region Delete Language
-        public bool DeleteLanguageSteps(IWebDriver Driver)
+        public bool DeleteLanguageSteps()
         {
             //Populate the EXcel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "LanguagePageData");
 
-            GoToLanguageTab(Driver);
+            GoToLanguageTab();
 
             //Validate Delete Language
             var editedLanguage = GlobalDefinitions.ExcelLib.ReadData(2, "UpdateLanguage");

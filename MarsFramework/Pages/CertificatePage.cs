@@ -14,6 +14,8 @@ namespace MarsFramework.Pages
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
         }
 
+        IWebDriver Driver = Global.GlobalDefinitions.Driver;
+
         //Click on Dropdown link
         [FindsBy(How = How.XPath, Using = "//span[contains(@class, 'item ui dropdown link')]")]
         private IWebElement DropDownLink { get; set; }
@@ -70,7 +72,7 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "(//i[@class = 'remove icon'])[4]")]
         private IWebElement DeleteButton { get; set; }
 
-        private void GoToCertificationTab(IWebDriver Driver)
+        private void GoToCertificationTab()
         {
             //Click on Dropdown Link
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//span[contains(@class, 'item ui dropdown link')]"), 30);
@@ -85,12 +87,12 @@ namespace MarsFramework.Pages
             CertificationsTab.Click();
         }
 
-        public void AddCertificate(IWebDriver Driver)
+        public void AddCertificate()
         {
             //Populate Excel Lib
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "CetificationsPageData");
 
-            GoToCertificationTab(Driver);
+            GoToCertificationTab();
 
             // Click on Add New Button
             Extension.WaitForElementDisplayed(Driver, By.XPath("(//div[contains(text(), 'Add New')])[4]"), 20);
@@ -114,12 +116,12 @@ namespace MarsFramework.Pages
         #endregion
 
         #region Edit Certificate
-        public void EditCertificate(IWebDriver Driver)
+        public void EditCertificate()
         {
             //Populate Excel Lib
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "CetificationsPageData");
 
-            GoToCertificationTab(Driver);
+            GoToCertificationTab();
 
             //Click on Edit Write Icon
             GlobalDefinitions.WaitForElement(Driver, By.XPath("(//i[@class ='outline write icon'])[5]"), 30);
@@ -145,12 +147,12 @@ namespace MarsFramework.Pages
         #endregion
 
         #region Delete Certificate
-        public bool DeleteCertificate(IWebDriver Driver)
+        public bool DeleteCertificate()
         {
             //Populate Excel Lib
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathProfilePage, "CetificationsPageData");
 
-            GoToCertificationTab(Driver);
+            GoToCertificationTab();
 
             //Validation Delete Button
             var EditedCertificate = GlobalDefinitions.ExcelLib.ReadData(2, "EditedCertificate");
