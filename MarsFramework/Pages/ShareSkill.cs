@@ -1,6 +1,5 @@
 ﻿using AutoItX3Lib;
 using MarsFramework.Global;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
@@ -15,6 +14,9 @@ namespace MarsFramework.Pages
         {
             PageFactory.InitElements(Global.GlobalDefinitions.Driver, this);
         }
+
+        IWebDriver Driver = Global.GlobalDefinitions.Driver;
+
 
         //Click on ShareSkill Link
         [FindsBy(How = How.LinkText, Using = "Share Skill")]
@@ -105,7 +107,7 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//button[@class = 'ui icon positive right labeled button']")]
         private IWebElement ActionsButton { get; set; }
 
-        internal void AddShareSkill(IWebDriver Driver)
+        internal void AddShareSkill()
         {
 
             //Populate the excel data
@@ -191,25 +193,13 @@ namespace MarsFramework.Pages
             ActiveOption.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Active"));
             ActiveOption.Click();
 
-
-            //Validate AddShareSkill
-            var expectedTitle = "SpecFlow";
-            var expectedDescription = "Could Be Provide";
-            var actualTitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
-            var actualDescription = GlobalDefinitions.ExcelLib.ReadData(2, "Description");
-
-            Assert.That(actualTitle == expectedTitle, "title does not match");
-            Assert.That(actualDescription == expectedDescription, "description does not match");
-
-            GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@value='Save']"), 5);
-
             //Click on Save Button   
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//input[@value='Save']"), 5);
             Save.Click();
         }
 
-        internal void EditShareSkill(IWebDriver Driver)
+        internal void EditShareSkill()
         {
-
             //populate excel data
             GlobalDefinitions.ExcelLib.PopulateInCollection(Base.ExcelPathEdit, "EditTestData");
 
@@ -217,18 +207,8 @@ namespace MarsFramework.Pages
             GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 20);
             ManageListings.Click();
 
-            //Validate EditShare Skill
-            var createdTitle = GlobalDefinitions.ExcelLib.ReadData(2, "Title");
-            if (createdTitle == "SpecFlow")
-            {
-                //Click on Edit Icon
-                GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 20);
-                Edit.Click();
-            }
-            else
-            {
-                Assert.Fail("Record to be edited hasn't been found");
-            }
+            GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'outline write icon']"), 20);
+            Edit.Click();
 
             Title.Clear();
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "NewTitle"));
@@ -237,18 +217,15 @@ namespace MarsFramework.Pages
             Save.Click();
         }
 
-        internal void DeleteShareSkill(IWebDriver Driver)
+        internal void DeleteShareSkill()
         {
-
             //Click on Manage Listing Link
             GlobalDefinitions.WaitForElement(Driver, By.LinkText("Manage Listings"), 5);
             ManageListings.Click();
 
-
             //Click on Delete icon
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//i[@class = 'remove icon']"), 5);
             Delete.Click();
-
 
             GlobalDefinitions.WaitForElement(Driver, By.XPath("//button[@class = 'ui icon positive right labeled button']"), 5);
             //Click action button
