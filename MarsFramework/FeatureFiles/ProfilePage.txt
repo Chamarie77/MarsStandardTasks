@@ -1,0 +1,194 @@
+Feature: ProfilePage
+
+As a learner I want to add a Language, Edit the language and Delete the language.
+So I can manage profile page successfully.
+
+Scenario: I am happy to go to the profile page
+	Given i login to the portal. 
+	When i navigate to the profile page
+	Then i logged in to the profile page successfully
+
+
+
+Scenario: I am happy to upload a profile picture
+	Given i clicked on the profile image
+	When i uplaoded a picture
+	Then i can see that picture
+
+Scenario: I am happy to edit the profile picture
+	Given i clicked on the profile image
+	When i edited a picture
+	Then i can see that edited picture
+
+Scenario: I am happy to delete the profile picture
+	Given i clicked on the profile image
+	When i delete the picture
+	Then i can not see that picture
+
+
+
+Scenario: I am happy to edit the profile name
+	Given i clicked on the profile name
+	When i edited a profile name
+	Then i can see that edited name
+
+
+
+Scenario: I am happy to select the country
+	Given i clicked on the location
+	When i selected the country
+	Then i can see the country
+
+Scenario: I am happy to edit the country
+	Given i clicked on the location
+	When i edited the country
+	Then i can see the edited country
+
+
+Scenario: I am happy to select the city
+	Given i clicked on the city
+	When i selected the city
+	Then i can see the city
+
+Scenario: I am happy to edit the city
+	Given i clicked on the city
+	When i edited the city
+	Then i can see the edited city
+
+
+
+Scenario: I am happy to select the availability
+	Given i clicked on the availability
+	When i selected the availability
+	Then i can see the availability
+
+Scenario: I am happy to edit the availability
+	Given i clicked on the availability
+	When i edited the availability
+	Then i can see the edited availability
+
+
+
+Scenario: I am happy to select the hours
+	Given i clicked on the hours
+	When i selected the hours
+	Then i can see the hours
+
+Scenario: I am happy to edit the hours
+	Given i clicked on the hours
+	When i edited the hours
+	Then i can see the edited hours
+
+
+
+Scenario: I am happy to select the earnings
+	Given i clicked on the earnings
+	When i selected the earnings
+	Then i can see the earnings
+
+Scenario: I am happy to edit the earnings
+	Given i clicked on the earnings
+	When i edited the earnings
+	Then i can see the edited earnings
+
+
+@automation
+Scenario: 01 I am happy to enter the description
+	Given i enter the description
+	Then i can see the description
+	
+
+Scenario: I am happy to edit the description
+	Given i clicked on the description writeicon
+	When i edited the description
+	Then i clicked on the save button
+
+
+
+@automation
+Scenario: 02 I am happy to enter a language
+	Given i clicked on the language tab under the profile page
+	When i entered a language
+	Then i can see the language on my list
+
+@automation
+Scenario Outline: 03 I am happy to edit the language
+	Given i clicked on the language tab under the profile page
+	When i edited the '<Language>', '<Level>'
+	Then i can see the edited '<Language>' and '<Level>' on my list
+
+	Examples: 
+	| Language | Level           |
+	| Sinhalese| Native/Bilingual|
+
+
+Scenario:04  I am happy to delete the language
+	Given i clicked on the language tab under the profile page
+	When i delete the language
+	Then i can not see the delete language on my list
+
+
+@ignore
+Scenario: I am happy to enter a skill
+	Given i clicked on the skill tab under the profile page
+	When i entered a skill
+	Then i can see the skill on my list
+
+Scenario: I am happy to edit the skill
+	Given i clicked on the skill tab under the profile page
+	When i edited the skill
+	Then i can see the edited skill on my list
+	
+Scenario: I am happy to delete the skill
+	Given i clicked on the skill tab under the profile page
+	When i delete the skill
+	Then i can not see the delete skill on my list
+
+
+
+Scenario: I am happy to enter a education
+	Given i clicked on the education tab under the profile page
+	When i entered a education
+	Then i can see the education on my list
+
+Scenario: I am happy to edit the education
+	Given i clicked on the education tab under the profile page
+	When i edited the education
+	Then i can see the edited education on my list
+	
+Scenario: I am happy to delete the education
+	Given i clicked on the education tab under the profile page
+	When i delete the educationl
+	Then i can not see the delete education on my list
+
+
+
+@automation
+Scenario: 05 I am happy to enter a certification
+	Given i clicked on the certifications tab under the profile page
+	When i entered a certification
+	Then i can see the certification on my list
+
+
+@automation
+Scenario Outline: 06 I am happy to edit the certification
+	Given i clicked on the certifications tab under the profile page
+	When i updated the '<Certificate>', '<From>', <'Year'>
+	Then i can see the updated '<Certificate>', '<From>', '<Year>' on my list
+
+	Examples:
+	| Certificate | From   | Year |
+	| Java        | Oracle | 2004 |
+
+@automation	
+Scenario: 07 I am happy to delete the certification
+	Given i clicked on the certifications tab under the profile page
+	When i delete the certification
+	Then i can not see the delete certification on my list
+
+
+
+Scenario: I am happy to change the password 
+	Given i clicked on the change password under the profile page drop down
+	When i changed the password successfully
+	Then i should be able to log in by using new password

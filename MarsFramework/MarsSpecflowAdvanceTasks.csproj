@@ -493,7 +493,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\MarsResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MarsResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Global\Base.cs" />
+    <Compile Include="Global\GlobalDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpecFlowStepDefinitions\ShareSkillStepDefinitions.cs" />
+    <Compile Include="SpecFlowPages\CertificationPage.cs" />
+    <Compile Include="SpecFlowPages\ProfilePage.cs" />
+    <Compile Include="SpecFlowPages\ShareSkillPage.cs" />
+    <Compile Include="SpecFlowPages\SignIn.cs" />
+    <Compile Include="SpecFlowPages\SignUp.cs" />
+    <Compile Include="SpecFlowStepDefinitions\ProfilePageStepDefinitions.cs" />
+    <Compile Include="SpecFlowTest\TestStart.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -501,13 +516,19 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="SpecFlow\ProfilePage.feature" />
-    <None Include="SpecFlow\ShareSkill.feature" />
+    <None Include="SpecFlowFeatureFiles\ProfilePage.feature" />
+    <None Include="SpecFlowFeatureFiles\ShareSkill.feature" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="chromedriver.exe" />
+    <Content Include="Config\XMLFile.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Config\MarsResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MarsResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
