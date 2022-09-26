@@ -9,17 +9,22 @@ namespace MarsFramework
     [Binding]
     public class ShareSkillStepDefinitions
     {
+        ShareSkillPage page;
+
+        public ShareSkillStepDefinitions()
+        {
+            page = new ShareSkillPage();
+        }
+
         [Given(@"i clicked on the share skill button on the profile page")]
         public void GivenIClickedOnTheShareSkillButtonOnTheProfilePage()
         {
-            ShareSkillPage page = new ShareSkillPage();
             page.GoToShareSkillPage();
         }
 
         [When(@"i added a new skill")]
         public void WhenIAddedANewSkill()
         {
-            ShareSkillPage page = new ShareSkillPage();
             page.AddShareSkill();
         }
 
@@ -39,14 +44,12 @@ namespace MarsFramework
         [Given(@"i clicked on the manage listungs link on the profile page")]
         public void GivenIClickedOnTheManageListungsLinkOnTheProfilePage()
         {
-            ShareSkillPage page = new ShareSkillPage();
             page.GoToManageListingPage();
         }
 
         [When(@"i updated '([^']*)', '([^']*)' of the skill")]
         public void WhenIUpdatedOfTheSkill(string p0, string p1)
         {
-            ShareSkillPage page = new ShareSkillPage();
             page.EditShareSkill(p0, p1);
         }
 
@@ -66,7 +69,6 @@ namespace MarsFramework
         [When(@"i deleted '([^']*)' record")]
         public void WhenIDeletedRecord(string p0)
         {
-            ShareSkillPage page = new ShareSkillPage();
             page.GoToManageListingPage();
             page.DeleteShareSkill(p0);
         }
