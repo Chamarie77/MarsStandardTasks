@@ -13,14 +13,17 @@ namespace MarsFramework.StepDefinitions
 
         IWebDriver Driver = Global.GlobalDefinitions.Driver;
 
+        ProfilePage page;
+        CertificationPage cpage;
+        public ProfilePageStepDefinitions()
+        {   
+            page = new ProfilePage();
+            cpage = new CertificationPage();
+        }
 
         [Given(@"i enter the description")]
         public void GivenIEnterTheDescription()
         {
-            // public IWebDriver Driver { get; set; }
-          //  test = extent.StartTest("Test_AddLanguage");
-          //  test.Log(RelevantCodes.ExtentReports.LogStatus.Info, "Test_AddLanguage demo");
-            ProfilePage page = new ProfilePage();
             page.GoToProfilePage();
             page.EnterDescription();
         }
@@ -37,14 +40,12 @@ namespace MarsFramework.StepDefinitions
         [Given(@"i clicked on the language tab under the profile page")]
         public void GivenIClickedOnTheLanguageTabUnderTheProfilePage()
         {
-            ProfilePage page = new ProfilePage();
             page.GoToProfilePage();
         }
 
         [When(@"i entered a language")]
         public void WhenIEnteredALanguage()
         {
-            ProfilePage page = new ProfilePage();
             page.AddLanguageSteps();
         }
 
@@ -66,11 +67,8 @@ namespace MarsFramework.StepDefinitions
         [When(@"i edited the '([^']*)', '([^']*)'")]
         public void WhenIEditedThe(string language, string p1)
         {
-            ProfilePage page = new ProfilePage();
             page.GoToProfilePage();
             page.EditLanguageSteps(language, p1);
-
-
         }
 
         [Then(@"i can see the edited '([^']*)' and '([^']*)' on my list")]
@@ -83,13 +81,11 @@ namespace MarsFramework.StepDefinitions
             Assert.That(expectedEditedLanguageLevel == p1, "Actual Edited Language and Expected Edited Language does not match");
         }
 
-
-        
+             
 
         [When(@"i delete the language")]
         public void WhenIDeleteTheLanguage()
         {
-            ProfilePage page = new ProfilePage();
             page.GoToProfilePage();
             page.DeleteLanguageSteps();
         }
@@ -97,8 +93,6 @@ namespace MarsFramework.StepDefinitions
         [Then(@"i can not see the delete language on my list")]
         public void ThenICanNotSeeTheDeleteLanguageOnMyList()
         {
-            ProfilePage page = new ProfilePage();
-
             Assert.IsTrue(page.DeleteLanguageSteps(), "Record deleted. I can't see edited language");
         }
 
@@ -107,15 +101,13 @@ namespace MarsFramework.StepDefinitions
         [Given(@"i clicked on the certifications tab under the profile page")]
         public void GivenIClickedOnTheCertificationsTabUnderTheProfilePage()
         {
-            CertificationPage page = new CertificationPage();
-            page.GoToCertificationTab();
+           cpage.GoToCertificationTab();
         }
 
         [When(@"i entered a certification")] 
         public void WhenIEnteredACertification()
         {
-            CertificationPage page = new CertificationPage();
-            page.AddCertificate();
+            cpage.AddCertificate();
         }
 
         [Then(@"i can see the certification on my list")]
@@ -135,9 +127,8 @@ namespace MarsFramework.StepDefinitions
         [When(@"i updated the '([^']*)', '([^']*)', '([^']*)'")]
         public void WhenIUpdatedThe(string p0, string p1, string p2)
         {
-            CertificationPage page = new CertificationPage();
-            page.GoToCertificationTab();
-            page.EditCertificate(p0, p1, p2);
+            cpage.GoToCertificationTab();
+            cpage.EditCertificate(p0, p1, p2);
         }
 
         [Then(@"i can see the updated '([^']*)', '([^']*)', '([^']*)' on my list")]
@@ -156,9 +147,8 @@ namespace MarsFramework.StepDefinitions
         [When(@"i delete the certification")]
         public void WhenIDeleteTheCertification()
         {
-            CertificationPage page = new CertificationPage();
-            page.GoToCertificationTab();
-            page.DeleteCertificate();
+            cpage.GoToCertificationTab();
+            cpage.DeleteCertificate();
         }
 
         [Then(@"i can not see the delete certification on my list")]
@@ -166,9 +156,6 @@ namespace MarsFramework.StepDefinitions
         {
             CertificationPage page = new CertificationPage();
             Assert.IsTrue(page.DeleteCertificate(), "Record deleted. I can't see edited certificate");
-
         }
-
-        
     }
 }
