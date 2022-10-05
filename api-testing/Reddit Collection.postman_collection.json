@@ -21,7 +21,21 @@
 							"//Assertion 2 - Headers check\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
 							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"});"
+							"});\r",
+							"\r",
+							"pm.test(\"Body contains string\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"kind\");\r",
+							"});\r",
+							"\r",
+							"const jsonData = pm.response.json();\r",
+							"pm.test(\"Test data type of the response\", () => {\r",
+							"    pm.expect(jsonData.data.after).to.be.a(\"string\");\r",
+							"    pm.expect(jsonData.data.dist).to.be.a(\"number\");\r",
+							"    pm.expect(jsonData.data.geo_filter).to.be.null;\r",
+							"    pm.expect(jsonData.data.children).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}

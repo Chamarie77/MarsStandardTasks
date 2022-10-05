@@ -18,6 +18,16 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
+							"//Assertion 2 - Headers check\r",
+							"pm.test(\"Content-Type header is application/json\", () => {\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+							"});\r",
+							"\r",
+							"//Assertion 3 - Response time check\r",
+							"pm.test(\"Response time is less than 1000 ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
 							""
 						],
 						"type": "text/javascript"
@@ -58,6 +68,34 @@
 		},
 		{
 			"name": "Get one Employee Details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//Assertion 1\r",
+							"pm.test(\"Status code check\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"//Assertion 2 - Headers check\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"//Assertion 3 - Testing Response Body\r",
+							"pm.test(\"Person is Tiger\", () => {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.id).to.eql(1);\r",
+							"    pm.expect(jsonData.data.employee_name).to.eql(\"Tiger Nixon\");\r",
+							"    pm.expect(jsonData.data.employee_salary).to.eql(320800);\r",
+							"    pm.expect(jsonData.data.employee_age.toString()).to.eql.toString(61);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},

@@ -21,6 +21,11 @@
 							"//Assertion 2 - Headers check\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
 							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"//Check body string\r",
+							"pm.test(\"Body contains string\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"ip\");\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -72,7 +77,14 @@
 							"//Assertion 2 - Headers check\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
 							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"});"
+							"});\r",
+							"\r",
+							"//Check body string\r",
+							"pm.test(\"Body contains string\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"insert-key-here\");\r",
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -126,7 +138,14 @@
 							"//Assertion 2 - Headers check\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
 							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"});"
+							"});\r",
+							"\r",
+							"//Check body string\r",
+							"pm.test(\"Body contains string\", () => {\r",
+							"    pm.expect(pm.response.text()).to.include(\"date\");\r",
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -177,7 +196,16 @@
 							"//Assertion 2 - Headers check\r",
 							"pm.test(\"Content-Type is present\", function () {\r",
 							"    pm.response.to.have.header(\"Content-Type\");\r",
-							"});"
+							"});\r",
+							"\r",
+							"//Check body values\r",
+							"pm.test(\"Body contains values\", () => {\r",
+							"    const responseJson = pm.response.json();\r",
+							"    pm.expect(responseJson.size).to.eql(1);\r",
+							"    pm.expect(responseJson.validate).to.eql(true);\r",
+							"});\r",
+							"\r",
+							""
 						],
 						"type": "text/javascript"
 					}
